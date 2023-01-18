@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap');
+
+
+
+
+
+
+div.card-header {
+ font-size: large
+}
+
+div.card {
+  margin-top: 10px
+}
+
+.table {
+  margin-top: 10px
+}
+
+a {
+  text-decoration: none
+}
+a:hover {
+  text-decoration: underline
+}
+
+
+.btn-primary {
+  background-color:#20a6ff
+}
+
+.nav-link {
+  margin-left: 100px
+}
+
+.nav-elements {
+  color:#20a6ff
+}
+
+.navel {
+}

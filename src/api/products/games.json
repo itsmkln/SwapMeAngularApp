@@ -1,0 +1,56 @@
+[
+  {
+    "gameId": 1,
+    "gameName": "Hades",
+    "gameGenre": "roguelite, rpg, indie, action",
+    "gameScore": 88,
+    "gameAvailability": "3 vendors",
+    "gamePrice": 12,
+    "imageUrl": "assets/gameHeaders/hades.jpg",
+    "gameStars": 4.4
+  },
+
+  {
+    "gameId": 2,
+    "gameName": "Chivalry II",
+    "gameGenre": "action, indie",
+    "gameScore": 69,
+    "gameAvailability": "1 vendor",
+    "gamePrice": 15,
+    "imageUrl": "assets/gameHeaders/chivalry2.jpg",
+    "gameStars": 3.45
+  },
+
+  {
+    "gameId": 3,
+    "gameName": "Elden Ring",
+    "gameGenre": "action, rpg, soulslike",
+    "gameScore": 90,
+    "gameAvailability": "0 vendors",
+    "gamePrice": 1,
+    "imageUrl": "assets/gameHeaders/eldenring.jpg",
+    "gameStars": 4.5
+  },
+
+  {
+    "gameId": 4,
+    "gameName": "Red Dead Redemption 2",
+    "gameGenre": "action, rpg, shooter",
+    "gameScore": 93,
+    "gameAvailability": "2 vendors",
+    "gamePrice": 40,
+    "imageUrl": "assets/gameHeaders/rdr2.jpg",
+    "gameStars": 4.65
+  },
+
+  {
+    "gameId": 5,
+    "gameName": "God of War",
+    "gameGenre": "action, rpg",
+    "gameScore": 94,
+    "gameAvailability": "3 vendors",
+    "gamePrice": 50,
+    "imageUrl": "assets/gameHeaders/godofwar.jpg",
+    "gameStars": 4.7
+  }
+]

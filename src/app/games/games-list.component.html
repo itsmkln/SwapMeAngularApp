@@ -1,0 +1,112 @@
+<style>
+
+    th {
+        text-align: center;;
+    }
+    td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+
+    .col-md-6 {
+        margin-top: 50px;
+    }
+
+    /* wrapping the search box */
+
+.main {
+    width: 50%;
+    margin: 50px auto;
+}
+
+/* text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 3.100rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+.filt-by{
+    padding-top: 25px;
+}
+
+</style>
+
+
+
+<div class="card">
+    <div class="class-header">
+    </div>
+    <div class="card-body">
+        <h1> {{this.pageTitle}} </h1>
+            <div class="col-md-4; form-group has-search" >
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text"
+                class="form-control form-control-lg rounded" placeholder="Type Keywords"
+                aria-label="Type Keywords" aria-describedby="basic-addon2"
+                [(ngModel)]="listFilter"/>
+                </div>
+            <div class="row">
+                <div class="col-sm-6"
+                *ngIf="listFilter">
+                <div class="col-sm-6; filt-by">
+                    <h4>Filtered by: {{listFilter}}</h4>
+                </div>
+            </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table"
+                        *ngIf="games.length">
+                    <thead>
+                        <tr>
+                            <th>
+                                <button (click)="disableImage()" class="btn btn-primary">
+                                    {{hideImage ? "Show" : "Hide"}} Image
+                                </button>
+                            </th>
+                            <th>Game</th>
+                            <th>AvailableFrom</th>
+                            <th>Price</th>
+                            <th>Metascore</th>
+                            <th>Offers</th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        
+                        <tr *ngFor="let game of filteredGames">
+                            <td>
+                            <img *ngIf="!hideImage"
+                                 [src]="game.imageUrl"
+                                 [title]="game.gameName"
+                                 [style.width.px]="imageWidth"
+                                 [style.margin.px]="imageMargin">
+                            </td>
+                            <td>{{game.gameName}} </td>
+                            <td>{{game.gameAvailability}}</td>
+                            <td>{{game.gamePrice | currency: 'USD' : 'symbol' : '1.2-2' }}</td>
+                            <td>{{game.gameScore}}</td>
+                            <td>
+                                <a [routerLink]="['/games', game.gameId]"
+                                class= "btn btn-primary">
+                                {{isAvailable ? "Ask vendor" : "N/A"}}
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
