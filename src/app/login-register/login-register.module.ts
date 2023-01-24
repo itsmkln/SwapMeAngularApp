@@ -11,6 +11,7 @@ import { DashboardComponent } from '../components/dashboard/dashboard.component'
 import { NgToastService } from 'ng-angular-popup';
 import { AuthGuard } from '../guards/auth.guard';
 import { AdminDashboardComponent } from '../components/dashboard/admin-dashboard/admin-dashboard.component';
+import { UsermanagerComponent } from '../components/dashboard/admin-dashboard/usermanager/usermanager.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { AdminDashboardComponent } from '../components/dashboard/admin-dashboard
       { path: "login", component: LoginComponent},
       { path: "register", component: RegisterComponent},
       { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard]},
+      { path: "usermanager", component: UsermanagerComponent},
       { path: "admin", component: AdminDashboardComponent, canActivate: [AuthGuard], data: {
         role: 'Admin'
       }},

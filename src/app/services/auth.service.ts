@@ -38,6 +38,16 @@ export class AuthService {
     localStorage.setItem('username', currentUser)
   }
 
+  getId(){
+    if (this.userPayload) {
+      return this.userPayload.nameid
+    }
+  }
+
+  getUsername(){
+    return localStorage.getItem('username');
+  }
+
   getToken(){
     return localStorage.getItem('token')
   }

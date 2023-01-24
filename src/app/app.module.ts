@@ -16,6 +16,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { TokenInterceptor } from 'src/interceptors/token.interceptor';
 import { AdminDashboardComponent } from './components/dashboard/admin-dashboard/admin-dashboard.component';
+import { UsermanagerComponent } from './components/dashboard/admin-dashboard/usermanager/usermanager.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { AdminDashboardComponent } from './components/dashboard/admin-dashboard/
     LogoComponent,
     DashboardComponent,
     AdminDashboardComponent,
+    UsermanagerComponent,
   ],
   imports: [
     BrowserModule, 
@@ -35,12 +37,14 @@ import { AdminDashboardComponent } from './components/dashboard/admin-dashboard/
       { path: "**", redirectTo: "welcome", pathMatch: "full" },
       { path: "login", redirectTo: "login", pathMatch: "full" },
       { path: "register", redirectTo: "register", pathMatch: "full" },
+      { path: "usermanager", redirectTo: "usermanager", pathMatch: "full"}
       
     
     ]),
     LoginRegisterModule,
     GameModule,
     NgToastModule,
+    ReactiveFormsModule
   ],
 
   providers: [{

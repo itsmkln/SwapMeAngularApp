@@ -12,6 +12,7 @@ import { UserStoreService } from 'src/app/services/user-store.service';
 })
 export class DashboardComponent implements OnInit {
   
+  public userid: number = 0;
   public users: any = [];
   public fullName: string = "";
   public role: string = "";
@@ -20,6 +21,9 @@ export class DashboardComponent implements OnInit {
      private router: Router, private toast: NgToastService) {}
 
     ngOnInit() {
+
+      this.userid = this.auth.getId();
+
       this.api.getUsers()
       .subscribe(res =>{
         this.users = res;
@@ -36,39 +40,40 @@ export class DashboardComponent implements OnInit {
       const roleFromToken = this.auth.getRoleFromToken();
       this.role = val || roleFromToken
     });
-
+    
 
   }
 
-  deleteMe(username: any){
-    let confirmed = confirm("Are you sure?");
-    if(confirmed) {
-      this.api.DeleteMe(username)
+  deleteUser(id: number){
+    let confirmed = confirm("Are you sure you want to delete your account?")
+    if (confirmed){
+      this.api.DeleteUserById(id)
       .subscribe(res=>{
-        alert("Deleted successfully");
+        this.toast.success({detail: "SUCCESS", summary:"Your account has been deleted.", duration: 2000})
+        this.router.navigate(['welcome'])
       })
-    }
-  } 
   
-  deleteMyAccount() {
-      this.api.DeleteMe(this.username)
-      .subscribe({
-        next: (res) => {
-          let username = this.auth.storeUsername(res.username);
-          console.log("huj")
-          console.log(this.auth.storeUsername(res.username));
-          if (username != null) {
-          this.toast.success({detail: "SUCCESS", summary:"Done", duration: 2000});
-          this.auth.logout();
-          this.router.navigate(['dashboard'])
-          }
-        },
-      error: (err) => {
-        this.toast.error({detail: "ERROR", summary: "Something went wrong!", duration: 2000});
-        console.log(err);
-        }});
-    }
   }
-
+  
+  // deleteMyAccount() {
+  //     this.api.DeleteMe(this.username)
+  //     .subscribe({
+  //       next: (res) => {
+  //         let username = this.auth.storeUsername(res.username);
+  //         console.log("huj")
+  //         console.log(this.auth.storeUsername(res.username));
+  //         if (username != null) {
+  //         this.toast.success({detail: "SUCCESS", summary:"Done", duration: 2000});
+  //         this.auth.logout();
+  //         this.router.navigate(['dashboard'])
+  //         }
+  //       },
+  //     error: (err) => {
+  //       this.toast.error({detail: "ERROR", summary: "Something went wrong!", duration: 2000});
+  //       console.log(err);
+  //       }});
+    }
   
 
+  
+  }

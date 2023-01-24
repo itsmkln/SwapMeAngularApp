@@ -1,0 +1,9 @@
+.btn-primary.delete {
+    background-color:salmon;
+    border: none;
+}
+
+.btn-primary.edit {
+    background-color:mediumseagreen;
+    border: none;
+}
