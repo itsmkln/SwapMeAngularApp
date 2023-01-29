@@ -110,23 +110,29 @@ export class AppComponent {
 
   ngOnInit() {
 
-  this.userStore.getFirstNameFromStore()
-  .subscribe(val=>{
-    let firstNameFromToken = this.auth.getFirstNameFromToken();
-    this.firstName = val || firstNameFromToken
-  })
+  !!this.auth.isLoggedIn()
+  {
+    this.userStore.getFirstNameFromStore()
+    .subscribe(val=>{
+      let firstNameFromToken = this.auth.getFirstNameFromToken();
+      this.firstName = val || firstNameFromToken
+    })
+    this.userStore.getFullNameFromStore()
+    .subscribe(val=>{
+      let fullNameFromToken = this.auth.getFullNameFromToken();
+      this.fullName = val || fullNameFromToken
+    })
+    this.userStore.getRoleFromStore()
+    .subscribe(val=>{
+      let roleFromToken = this.auth.getRoleFromToken();
+      this.role = val || roleFromToken
+    })
+  }
 
-  this.userStore.getFullNameFromStore()
-  .subscribe(val=>{
-    let fullNameFromToken = this.auth.getFullNameFromToken();
-    this.fullName = val || fullNameFromToken
-  })
 
-  this.userStore.getRoleFromStore()
-  .subscribe(val=>{
-    let roleFromToken = this.auth.getRoleFromToken();
-    this.role = val || roleFromToken
-  })
+
+
+
 
   
 

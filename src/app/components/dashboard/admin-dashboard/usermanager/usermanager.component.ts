@@ -18,6 +18,7 @@ export class UsermanagerComponent implements OnInit{
   formValue !: FormGroup;
   public users : any = [];
   userObj : UserModel = new UserModel();
+  
   // userData !: any;
   showUpdate !: boolean;
   @Input() receive !: string;
@@ -52,27 +53,31 @@ export class UsermanagerComponent implements OnInit{
 
   editUser(){
     this.userObj.Username = this.formValue.value.username;
-    this.userObj.FirstName = this.formValue.value.firstName;
-    this.userObj.LastName = this.formValue.value.lastName;
+    this.userObj.UserInfo.FirstName = this.formValue.value.firstName;
+    this.userObj.UserInfo.LastName = this.formValue.value.lastName;
     this.userObj.Email = this.formValue.value.email;
-    this.userObj.PhoneNumber = this.formValue.value.phoneNumber;
-    this.userObj.State = this.formValue.value.state;
-    this.userObj.City = this.formValue.value.city;
+    this.userObj.UserInfo.PhoneNumber = this.formValue.value.phoneNumber;
+    this.userObj.UserInfo.State = this.formValue.value.state;
+    this.userObj.UserInfo.City = this.formValue.value.city;
     this.api.UpdateUser(this.userObj)
     .subscribe(res=>{
       alert("WOWOWOWOWO")
       let ref = document.getElementById('close');
       ref?.click();
       this.getUserDetails();
-      console.log("END");
+      this.toast.success({detail: "SUCCESS", summary:"User has been edited."})
+      
     })
   }
 
   onEdit(user : any){
     this.userObj.UserId = user.userId;
+    this.userObj.UserInfo.UserInfoId = user.userInfo.userInfoId;
 
+    console.log(user.userInfo.userinfoid)
     console.log(this.userObj.UserId);
-    console.log(this.userObj.FirstName);
+    console.log(this.userObj.UserInfo.UserInfoId)
+    console.log(this.userObj.UserInfo.FirstName);
 
 
     // this.userObj.FirstName = user.userinfo.firstName;
@@ -90,7 +95,7 @@ export class UsermanagerComponent implements OnInit{
     this.formValue.controls['state'].setValue(user.userInfo.state);
     this.formValue.controls['city'].setValue(user.userInfo.city);
     
-    console.log(this.userObj.FirstName);
+    console.log(this.userObj.UserInfo.FirstName);
 
     this.showUpdate = true;
   }
@@ -98,7 +103,7 @@ export class UsermanagerComponent implements OnInit{
 
   deleteUser(user: any) {
     console.log(user.userId)
-    let confirmed = confirm("You sure?");
+    let confirmed = confirm("Are you sure? You will not be able to recover the account.");
     if(confirmed) {
       this.api.DeleteUserById(user.userId)
       .subscribe({

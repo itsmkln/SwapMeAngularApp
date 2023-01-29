@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { DomElementSchemaRegistry } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Config } from '@fortawesome/fontawesome-svg-core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +18,19 @@ export class AuthService {
     this.userPayload = this.decodedToken();
     
   }
+
   register(userObj : any){
     return this.http.post<any>(`${this.baseUrl}register`, userObj)
   }
 
-  login(loginObj : any){
-    return this.http.post<any>(`${this.baseUrl}authenticate`, loginObj)
+  login(userObj : any){
+    return this.http.post<any>(`${this.baseUrl}authenticate`, userObj)
   }
 
 
   logout(){
     localStorage.clear();
+    sessionStorage.clear();
     this.router.navigate(['welcome']);
   }
 

@@ -48,12 +48,13 @@ export class RegisterComponent implements OnInit {
     this.auth.register(this.registerForm.value)
     .subscribe({
       next: (res=>{
-        this.toast.success({detail: "SUCCESS", duration: 2000});
+        this.toast.success({detail: "SUCCESS", summary: "User registered succesfully.", duration: 2000});
         this.registerForm.reset();
         this.router.navigate(['login']);
       }),
       error: (err=>{
-        alert(err?.error.message)
+        console.error(err.message)
+        //this.toast.error({detail: "FAILED", summary: "Something went wrong.", duration: 2000});
       })
     })
   }else{

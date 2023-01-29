@@ -49,6 +49,8 @@ export class DashboardComponent implements OnInit {
     if (confirmed){
       this.api.DeleteUserById(id)
       .subscribe(res=>{
+        sessionStorage.clear();
+        this.auth.logout();
         this.toast.success({detail: "SUCCESS", summary:"Your account has been deleted.", duration: 2000})
         this.router.navigate(['welcome'])
       })

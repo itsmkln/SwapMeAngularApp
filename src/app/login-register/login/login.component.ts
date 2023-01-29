@@ -44,6 +44,32 @@ export class LoginComponent implements OnInit {
         password: ['', [Validators.required, Validators.minLength(6)]]
     });
 }
+onLogin() {
+  if (this.loginForm.valid) {
+    console.log(this.loginForm.value);
+    localStorage.clear();
+    sessionStorage.clear();
+    this.auth.login(this.loginForm.value).subscribe({
+      next: (res) => {
+        this.loginForm.reset();
+        this.auth.storeToken(res.token);
+         const tokenPayload = this.auth.decodedToken();
+         this.userStore.setFullNameForStore(tokenPayload.unique_name);
+         this.userStore.setRoleFromStore(tokenPayload.role)
+        this.toast.success({detail: "SUCCESS", summary:res.message, duration: 2000});
+        //refresh dashboard?
+        this.router.navigate(['dashboard'])
+      },
+    error: (err) => {
+      alert(err.message)
+      //this.toast.error({detail: "ERROR", summary:"Unknown error appeared.", duration: 2000});
+      }
+    });
+  } else {
+    ValidateForm.validateFormFields(this.loginForm);
+    }
+  }
+
 
 hideShowPassword() {
   this.isText = !this.isText;
@@ -54,28 +80,7 @@ hideShowPassword() {
 // get f() { return this.registerForm.controls; }
 
 
-onLogin() {
-  if (this.loginForm.valid) {
-    console.log(this.loginForm.value);
-    this.auth.login(this.loginForm.value).subscribe({
-      next: (res) => {
-        this.loginForm.reset();
-        this.auth.storeToken(res.token);
-         const tokenPayload = this.auth.decodedToken();
-         this.userStore.setFullNameForStore(tokenPayload.unique_name);
-         this.userStore.setRoleFromStore(tokenPayload.role)
-        this.toast.success({detail: "SUCCESS", summary:res.message, duration: 2000});
-        this.router.navigate(['dashboard'])
-      },
-    error: (err) => {
-      this.toast.error({detail: "ERROR", summary: "Something went wrong!", duration: 2000});
-      console.log(err);
-      }
-    });
-  } else {
-    ValidateForm.validateFormFields(this.loginForm);
-    }
-  }
+
 }
 
 
