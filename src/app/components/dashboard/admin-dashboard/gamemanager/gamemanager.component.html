@@ -1,0 +1,178 @@
+
+<style>
+
+    th {
+        text-align: center;
+    }
+    td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+
+    .col-md-6 {
+        margin-top: 50px;
+    }
+
+    /* wrapping the search box */
+
+.main {
+    width: 50%;
+    margin: 50px auto;
+}
+
+/* text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 3.100rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+.filt-by{
+    padding-top: 25px;
+}
+
+.actions{
+    color: #20a6ff;
+    
+}
+
+.actions :hover{
+    color: red;
+}
+
+
+
+
+
+</style>
+
+
+
+<div class="card">
+    <div class="class-header">
+    </div>
+    <div class="card-body">
+        <h1> Game manager </h1>
+            <div class="col-md-4; form-group has-search" >
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text"
+                class="form-control form-control-lg rounded" placeholder="Type Keywords"
+                aria-label="Type Keywords" aria-describedby="basic-addon2"
+                
+                />
+                </div>
+            <div class="row">
+                <div class="col-sm-6"
+                >
+                <div class="col-sm-6; filt-by">
+                    <h4>Filtered by: </h4>
+                </div>
+            </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table"
+                        
+                        >
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Genre</th>
+                            <th></th> <th></th>
+                            <th></th> <th></th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            <td>game.image</td>
+                            <td>game.id </td>
+                            <td>game.name</td>
+                            <td>game.genreName</td>
+                            <td></td>
+                            <td></td>
+                        
+                            <td><button class="btn btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"        > Edit </button> </td>
+                            <td><button class="btn btn-primary delete" 
+                                
+                                
+                                
+                                > Delete </button></td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">User Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+
+
+
+                    <div class="mb-3">
+                        <label for="Username" class="form-label">Username</label>
+                        <input type="text" formControlName="username" class="form-control" id="exampleInputEmail1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="FirstName" class="form-label">First Name</label>
+                        <input type="text" formControlName="firstName" class="form-control" id="exampleInputEmail1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="LastName" class="form-label">Last Name</label>
+                        <input type="text" formControlName="lastName" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">Email address</label>
+                        <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="PhoneNumber" class="form-label">Phone Number</label>
+                        <input type="text" formControlName="phoneNumber" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="State" class="form-label">State</label>
+                        <input type="text" formControlName="state" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="City" class="form-label">City</label>
+                        <input type="text" formControlName="city" class="form-control" id="exampleInputPassword1">
+                    </div>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button id="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button"
+                
+                
+
+
+                 class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </div>
+</div>

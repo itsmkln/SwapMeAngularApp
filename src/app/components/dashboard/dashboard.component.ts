@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   public userid: number = 0;
   public users: any = [];
   public fullName: string = "";
+  public firstName: string ="";
   public role: string = "";
   public username: string ="";
   constructor(private api: ApiService, private auth: AuthService, private userStore: UserStoreService,
@@ -34,6 +35,12 @@ export class DashboardComponent implements OnInit {
       const fullNameFromToken = this.auth.getFullNameFromToken();
       this.fullName = val || fullNameFromToken
     });
+
+    this.userStore.getFirstNameFromStore()
+    .subscribe(val=>{
+      const firstNameFromToken = this.auth.getFirstNameFromToken();
+      this.firstName = val || firstNameFromToken
+    })
 
     this.userStore.getRoleFromStore()
     .subscribe(val=>{

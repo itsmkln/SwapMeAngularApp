@@ -1,5 +1,7 @@
-export class UserInfo{
-    UserInfoId : number = 0;
+export class UserDto{
+    UserId: number = 0;
+    Username: string = "";
+    Email : string = "";
     FirstName : string = "";
     LastName : string = "";
     PhoneNumber : string = "";

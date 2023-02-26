@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   eyeIcon: string = "fa-eye-slash";
   loginForm!: FormGroup;
 
+  error: string = "";
   showModal!: boolean;
   registerForm!: FormGroup;
   submitted = false;
@@ -49,7 +51,8 @@ onLogin() {
     console.log(this.loginForm.value);
     localStorage.clear();
     sessionStorage.clear();
-    this.auth.login(this.loginForm.value).subscribe({
+    this.auth.login(this.loginForm.value)
+    .subscribe({
       next: (res) => {
         this.loginForm.reset();
         this.auth.storeToken(res.token);
@@ -61,8 +64,10 @@ onLogin() {
         this.router.navigate(['dashboard'])
       },
     error: (err) => {
-      alert(err.message)
-      //this.toast.error({detail: "ERROR", summary:"Unknown error appeared.", duration: 2000});
+      console.log(err);
+      console.log(err.message);
+      console.log(err?.error.message);
+      this.toast.error({detail: "ERROR", summary:err.message, duration: 2000});
       }
     });
   } else {

@@ -12,6 +12,8 @@ import { NgToastService } from 'ng-angular-popup';
 import { AuthGuard } from '../guards/auth.guard';
 import { AdminDashboardComponent } from '../components/dashboard/admin-dashboard/admin-dashboard.component';
 import { UsermanagerComponent } from '../components/dashboard/admin-dashboard/usermanager/usermanager.component';
+import { GamemanagerComponent } from '../components/dashboard/admin-dashboard/gamemanager/gamemanager.component';
+import { AddofferComponent } from '../offers/addoffer/addoffer.component';
 
 
 @NgModule({
@@ -25,9 +27,11 @@ import { UsermanagerComponent } from '../components/dashboard/admin-dashboard/us
       { path: "register", component: RegisterComponent},
       { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard]},
       { path: "usermanager", component: UsermanagerComponent},
+      { path: "gamemanager", component: GamemanagerComponent},
+      { path: "addoffer", component: AddofferComponent},
       { path: "admin", component: AdminDashboardComponent, canActivate: [AuthGuard], data: {
-        role: 'Admin'
-      }},
+        role: 'Admin'},
+      },
     ]),
     SharedModule,
     ReactiveFormsModule,

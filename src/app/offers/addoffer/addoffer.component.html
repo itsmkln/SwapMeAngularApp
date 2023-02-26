@@ -1,0 +1,70 @@
+
+
+
+<div class="outer">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+                <div class="panel border bg-white">
+                    <div class="panel-heading" >
+                        <h3 class="text-center pt-3 font-weight-bold" >Add an offer
+
+                        </h3>
+                    </div>
+                    <div class="panel-body p-3">
+                        <form [formGroup] = "formValue">
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <select formControlName="game" name="game" id="game" class="form-control">
+                                        <option type="text" value="undefined" disabled invisible selected>Game</option>
+                                        <option type="text" *ngFor="let game of games">{{game.name}}</option>
+                                   </select>
+                                   </div>
+                            </div>
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <select formControlName="isPhysical" name="isPhysical" id="isPhysical" class="form-control">
+                                        <option type="text" disabled selected>Distribution</option>
+                                        <option type="text" *ngFor="let distribution of distributions">{{distribution}}</option>
+                                   </select>
+                                   </div>
+                            </div>
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <select formControlName="platform" name="platform" id="platform" class="form-control">
+                                        <option type="text" value="undefined" disabled invisible selected>Platform</option>
+                                        <option type="text" *ngFor="let platform of platforms">{{platform.name}}</option>
+                                   </select>
+                                   </div>
+                            </div>
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <select formControlName="offerType" name="offerType" id="offerType" class="form-control">
+                                        <option type="text" value="undefined" disabled invisible selected>Offer Type</option>
+                                        <option type="text" *ngFor="let offerType of offerTypes">{{offerType.name}}</option>
+                                   </select>
+                                   </div>
+                            </div>
+                            <div *ngIf="isNotExchange" class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="pln">PLN
+                                    <input formControlName="price" type="number" min="1.00" step="1.00" placeholder="Price">
+                                </span>
+                            </div>
+                            </div>
+
+                            <div class="form-inline fr mt-4 text-center"></div>
+                            <!-- <div class="form-inline fr mt-4 text-center">
+                                <a id="forgot"class="font-weight-bold">Forgot your password?</a>
+                            </div> -->
+                            <button type="button" (click)="publishOffer()" class="btn btn-primary btn-block mt-4 w-100" >Add offer</button>
+                        </form>
+                    </div>
+                    <!-- <div class="mx-3 my-2 py-2 bordert">
+                        <div class="text-center py-3"></div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

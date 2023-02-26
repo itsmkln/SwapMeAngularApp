@@ -44,6 +44,15 @@
 
 </style>
 
+<div *ngFor="let game of filteredGames">
+    <div *ngFor="let genre of genres">
+      <div *ngIf="game.genreId==genre.genreId">
+            <td>{{game.name}}</td>
+            <td>{{genre.name}}</td>
+      </div>
+    </div>
+  </div>
+
 
 
 <div class="card">
@@ -76,28 +85,28 @@
                                     {{hideImage ? "Show" : "Hide"}} Image
                                 </button>
                             </th>
-                            <th>Game</th>
-                            <th>AvailableFrom</th>
-                            <th>Price</th>
-                            <th>Metascore</th>
-                            <th>Offers</th>
+                            <th>GameName</th>
+                            <th>GenreId</th>
+                            <th>Actions</th>
                         </tr>
                         
                     </thead>
                     <tbody>
                         
                         <tr *ngFor="let game of filteredGames">
-                            <td>
+                            <!-- <div *ngFor="let genre of genres"> -->
+                            <!-- <div *ngIf="game.genreId == genres.genreId"> -->
+                                
+                            <!-- <td>
                             <img *ngIf="!hideImage"
                                  [src]="game.imageUrl"
-                                 [title]="game.gameName"
+                                 [title]="game.Name"
                                  [style.width.px]="imageWidth"
                                  [style.margin.px]="imageMargin">
-                            </td>
-                            <td>{{game.gameName}} </td>
-                            <td>{{game.gameAvailability}}</td>
-                            <td>{{game.gamePrice | currency: 'USD' : 'symbol' : '1.2-2' }}</td>
-                            <td>{{game.gameScore}}</td>
+                            </td> -->
+                            <td></td>
+                            <td>{{game.name}} </td>
+                            <td>{{game.genreId}} </td>
                             <td>
                                 <a [routerLink]="['/games', game.gameId]"
                                 class= "btn btn-primary">
@@ -105,6 +114,7 @@
                                 </a>
                             </td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>

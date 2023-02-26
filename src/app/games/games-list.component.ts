@@ -1,13 +1,16 @@
 import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs/internal/Subscription";
+import { ApiService } from "../services/api.service";
 import { GameService } from "./game.service";
-import { IGame } from "./games";
+import { GamesModel } from "./games.model";
 
 @Component({
     templateUrl: './games-list.component.html',
     styleUrls: ['./games-list.component.css'],
     providers: [GameService]
 })
+
+
 
 
 export class GamesListComponent implements OnInit, OnDestroy {
@@ -21,6 +24,9 @@ export class GamesListComponent implements OnInit, OnDestroy {
     errorMessage: string = "";
     sub!: Subscription;
 
+    genres: any = [];
+    //public games : any = []
+
     private _listFilter: string = "";
     get listFilter(): string {
         return this._listFilter;
@@ -31,15 +37,15 @@ export class GamesListComponent implements OnInit, OnDestroy {
         this.filteredGames = this.performFilter(value);
     }
 
-    filteredGames: IGame[] = [];
-    games: IGame[] = [];
+    filteredGames: GamesModel[] = [];
+    games: GamesModel[] = [];
 
-    constructor(private gameService: GameService) {}
+    constructor(private gameService: GameService, private api: ApiService) {}
 
-    performFilter(filterBy: string): IGame[] {
+    performFilter(filterBy: string): GamesModel[] {
         filterBy = filterBy.toLocaleLowerCase();
-        return this.games.filter((game: IGame) =>
-          game.gameName.toLocaleLowerCase().includes(filterBy));
+        return this.games.filter((game: GamesModel) =>
+          game.name.toLocaleLowerCase().includes(filterBy));
     }
 
     disableImage(): void {
@@ -48,6 +54,8 @@ export class GamesListComponent implements OnInit, OnDestroy {
 
 
     ngOnInit(): void {
+        
+
         this.sub = this.gameService.getGames().subscribe({
                 next: games => {
                     this.games = games,
@@ -55,7 +63,17 @@ export class GamesListComponent implements OnInit, OnDestroy {
                 },
                 error: err => this.errorMessage = err
             });
+
+            this.getAllGenres();
+
     }
+
+    getAllGenres() {
+        this.api.getGenres()
+        .subscribe(res=>{
+          this.genres = res;
+        })
+      }
 
     ngOnDestroy(): void {
         this.sub.unsubscribe();
@@ -64,6 +82,10 @@ export class GamesListComponent implements OnInit, OnDestroy {
     onRatingClicked(message: string): void {
         this.pageTitle = message;
     }
+
+    
+
+
 
 
 

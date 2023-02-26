@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Config } from '@fortawesome/fontawesome-svg-core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +22,14 @@ export class AuthService {
 
   register(userObj : any){
     return this.http.post<any>(`${this.baseUrl}register`, userObj)
+
   }
 
+
+  //    .pipe(map((res:any)=>{
+  //  return res;
   login(userObj : any){
-    return this.http.post<any>(`${this.baseUrl}authenticate`, userObj)
+    return this.http.post<any>(`${this.baseUrl}authenticate`, userObj).pipe(map((err:any)=>err))
   }
 
 
@@ -84,17 +89,5 @@ export class AuthService {
     if(this.userPayload)
     return this.userPayload.role;
   }
-
-
-  
-  // isAdmin(): boolean {
-  //   if(this.userPayload.role == 'Admin') {
-  //   console.log("admin")
-  //   return true
-  //   }
-  //   else
-  //   console.log("not admin")
-  //   return false;
-  // }
 
 }

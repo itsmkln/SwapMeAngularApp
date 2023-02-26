@@ -9,51 +9,56 @@ import { UserStoreService } from "./services/user-store.service";
 
   <style>
   :root {
-  /* border radius */
-  --radius: 0.2rem;
-  }
-
-  .nav {
-    font-family: Montserrat, sans-serif;
-  }
-  .nav-list {
-    background: white;
-    box-shadow: 0px 0px 10px var(--clr-gray200);
-    margin-right: 12rem;
-    padding: 1 rem 0;
-    border-radius: var(--radius);
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  .nav-item{
-    list-style: none;
-    margin-right: 1rem;
-  }
-
-  .nav-item a {
-    text-decoration: none;
-    color: black;
-  }
-
-  .nav-item a:hover {
-    color: var(--clr-primary-dark);
-  }
-
-  .nav-item: first-child {
-    margin-right: auto;
-    margin-left: 2rem;
-  }
-
-   .btn-primary {
-    background-color: #20a6ff;
-    border-color: #20a6ff;
-  }
-
-  ul {
-    list-style-type: none;
-  }
+    /* border radius */
+    --radius: 0.2rem;
+    }
+  
+    .nav {
+      font-family: Montserrat, sans-serif;
+    }
+    .nav-list {
+      background: white;
+      box-shadow: 0px 0px 10px var(--clr-gray200);
+      margin-right: 12rem;
+      padding: 1 rem 0;
+      border-radius: var(--radius);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  
+    .nav-item{
+      list-style: none;
+      margin-right: 1rem;
+    }
+  
+    .nav-item a {
+      text-decoration: none;
+      color: black;
+    }
+  
+    .nav-item a:hover {
+      color: var(--clr-primary-dark);
+    }
+  
+    .nav-item: first-child {
+      margin-right: auto;
+      margin-left: 2rem;
+    }
+  
+     .btn-primary {
+      background-color: #20a6ff;
+      border-color: #C7ED8A;
+      margin-right: 15px;
+    }
+  
+     .btn-primary-offer {
+      background-color: #B5E61D;
+     }
+  
+    ul {
+      list-style-type: none;
+    }
 
   </style>
 
@@ -75,6 +80,11 @@ import { UserStoreService } from "./services/user-store.service";
       <li>
       <a class="btn btn-primary" routerLink="/games">Marketplace</a>
         </li>
+
+        <li>
+        <a class="btn btn-primary-offer" routerLink="/addoffer">Add Offer</a>
+          </li>
+
       <li class="nav-item">
       <a class="nav-link" *ngIf="!auth.isLoggedIn()" routerLink="/login">Login</a>
         </li>

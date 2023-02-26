@@ -4,7 +4,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserStoreService } from 'src/app/services/user-store.service';
-import { DashboardComponent } from '../dashboard.component';
+import { DashboardComponent } from 'src/app/components/dashboard/dashboard.component';
 
 @Component({
   selector: 'gts-admin',
@@ -18,7 +18,14 @@ export class AdminDashboardComponent implements OnInit {
   public role: string = "";
 
   ngOnInit(): void {
+    this.checkAdmin();
 
+
+  }
+
+
+  
+  checkAdmin(){
     this.userStore.getRoleFromStore()
     .subscribe(val=>{
       const roleFromToken = this.auth.getRoleFromToken();
@@ -30,7 +37,6 @@ export class AdminDashboardComponent implements OnInit {
     this.toast.error({detail: "ERROR", summary: "You need to login as Admin" });
     this.router.navigate(['welcome']);
     }
-
   }
 
 }

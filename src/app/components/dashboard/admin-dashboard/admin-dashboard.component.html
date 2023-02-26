@@ -6,12 +6,13 @@
                         <div class="panel-heading" >
                             <h3 class="text-center pt-3 font-weight-bold" >Admin dashboard</h3> 
                             <div class="panel-body p-3">
-                                <div class="btn btn-primary"> Add a game </div>
-                                <div class="btn btn-primary"> Add a genre </div>
+                                <!-- <div [routerLink]="['/addgame']" class="btn btn-primary"> Add a game </div>
+                                <div [routerLink]="['/addgenre']" class="btn btn-primary"> Add a genre </div>
+                                <div [routerLink]="['/addplatform']" class="btn btn-primary"> Add a platform</div> -->
                                 <a [routerLink]="['/usermanager']" class="btn btn-primary"> User management </a>
-                                <div class="btn btn-primary"> Transaction management </div>
-                                <div class="btn btn-primary"> Game management </div>
-                                <div class="btn btn-primary"> lol </div>
+                                <a [routerLink]="['/gamemanager']" class="btn btn-primary"> Game management </a>
+                                <!-- <div [routerLink]="['/offermanager']"class="btn btn-primary"> Offer management </div>
+                                <div [routerLink]="['/transactionsmanager']"class="btn btn-primary"> Transaction management </div> --> 
                                 
                             </div>
                         </div>
