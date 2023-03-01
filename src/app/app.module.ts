@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from  '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { MatInputModule} from '@angular/material/input'
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';

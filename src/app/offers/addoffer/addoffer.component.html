@@ -13,7 +13,7 @@
                     </div>
                     <div class="panel-body p-3">
                         <form [formGroup] = "formValue">
-                            <div class="form-group pt-3">
+                            <div class="mat-form-group pt-3">
                                 <div class="input-field">
                                     <select formControlName="game" name="game" id="game" class="form-control">
                                         <option type="text" value="undefined" disabled invisible selected>Game</option>
@@ -45,7 +45,7 @@
                                    </select>
                                    </div>
                             </div>
-                            <div *ngIf="isNotExchange" class="form-group pt-3">
+                            <div *ngIf="!isExchange()" class="form-group pt-3">
                                 <div class="input-field">
                                     <span class="pln">PLN
                                     <input formControlName="price" type="number" min="1.00" step="1.00" placeholder="Price">

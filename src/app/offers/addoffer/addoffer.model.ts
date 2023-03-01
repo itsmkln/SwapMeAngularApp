@@ -5,7 +5,7 @@ export class OfferDto {
     CreatedOn: string = ""+now.toLocaleString;
     Price: number = 0;
     Status: string = "new";  // new/active/ended/sold
-
+    Description: string = "";
 
     OfferTypeId: number = 0;
     PlatformId: number = 0;

@@ -23,7 +23,7 @@ export class GamesListComponent implements OnInit, OnDestroy {
     isAvailable: boolean = true;
     errorMessage: string = "";
     sub!: Subscription;
-
+    offers: any = [];
     genres: any = [];
     //public games : any = []
 
@@ -48,6 +48,7 @@ export class GamesListComponent implements OnInit, OnDestroy {
           game.name.toLocaleLowerCase().includes(filterBy));
     }
 
+
     disableImage(): void {
         this.hideImage = !this.hideImage;
     }
@@ -55,18 +56,25 @@ export class GamesListComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         
+        console.log(this.getOfferDetails());
 
-        this.sub = this.gameService.getGames().subscribe({
-                next: games => {
-                    this.games = games,
-                    this.filteredGames = games;
-                },
-                error: err => this.errorMessage = err
-            });
+        // this.sub = this.api.GetOffers().subscribe({
+        //         next: games => {
+        //             this.games = games,
+        //             this.filteredGames = games;
+        //         },
+        //         error: err => this.errorMessage = err
+        //     });
 
-            this.getAllGenres();
 
     }
+
+    getOfferDetails() {
+        this.api.GetOffers()
+        .subscribe(res =>{
+          this.offers = res;
+        })
+      }
 
     getAllGenres() {
         this.api.getGenres()

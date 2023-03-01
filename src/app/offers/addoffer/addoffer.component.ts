@@ -20,7 +20,6 @@ export class AddofferComponent implements OnInit {
   distributions: any =[["Digital"], ["Box"]];
   offerObj : OfferDto = new OfferDto()
   status: string = "";
-  public currentDate = new Date();
 
   @Input() receive !: string;
   
@@ -35,6 +34,7 @@ export class AddofferComponent implements OnInit {
       price: [''],
       platform: [''],
       offerType: [''],
+      description: [''],
     })
 
     //this.auth.isLoggedIn(); todo must be logged in
@@ -46,43 +46,48 @@ export class AddofferComponent implements OnInit {
   }
 
   publishOffer(){
-
+    var currentDate = new Date();
     this.findGameId();
     this.findPlatformId();
     this.findOfferTypeId();
     this.isBox();
 
-    this.offerObj.CreatedOn = this.currentDate.toString();
+    this.offerObj.CreatedOn = currentDate.toJSON();
     console.log(this.offerObj.CreatedOn);
+    
 
 
     this.offerObj.Price = this.formValue.value.price;
-    console.log("offerObj.Price has been set to" + this.offerObj.Price)
+    console.log("offerObj.Price has been set to " + this.offerObj.Price)
 
-    
+    var sellerIdNumber = Number(this.auth.getId());
+    this.offerObj.SellerId = sellerIdNumber;
+    this.offerObj.Description = this.formValue.value.Description;
+    this.offerObj.Status = "New";
 
-    if (this.formValue.value.offerTypes = "Sell")
-    this.offerObj.OfferTypeId = 1;
-
-    console.log("after offertypeid" + this.offerObj.OfferTypeId)
-
-
-    this.offerObj.SellerId = this.auth.getId();
-    this.offerObj.GameId = this.games.gameid;
-    this.offerObj.Status = this.status;
-
-    // this.api.PublishOffer(this.offerObj)
-    // .subscribe(res=>{
-    //   console.log(this.offerObj);
-    //   alert("Chyba sie kurwa udalo")
-    //   //this.getOfferDetails(); no offers yet
-    //   this.toast.success({detail: "SUCCESS", summary:"Offer has been published."})
-    // })
+    this.api.PublishOffer(this.offerObj)
+    .subscribe(res=>{
+      console.log(this.offerObj);
+      alert("okurwa")
+      //this.getOfferDetails(); no offers yet
+      this.toast.success({detail: "SUCCESS", summary:"Offer has been published."})
+      this.router.navigate(["games"])
+    })
   }
       
-  
+  getOfferDetails() {
+    this.api.GetOffers()
+    .subscribe(res =>{
+      this.games = res;
+    })
+  }
 
-  isNotExchange(){
+  isExchange(){
+    if(this.formValue.value.offerType == "Exchange") {
+      this.formValue.value.price = 0;
+      this.offerObj.Price = 0;
+      return true;
+    }
     return false;
   }
 
@@ -105,6 +110,8 @@ export class AddofferComponent implements OnInit {
     this.offerTypes = res;
   })
 }
+
+
 
   findGameId() {
     this.games.forEach((game: any) => {
