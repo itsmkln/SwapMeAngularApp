@@ -1,4 +1,10 @@
+<style>
 
+:host ::ng-deep .mat-checkbox-layout .mat-input-field- {
+    color: green;
+}
+
+</style>
 
 
 <div class="outer">
@@ -12,45 +18,69 @@
                         </h3>
                     </div>
                     <div class="panel-body p-3">
-                        <form [formGroup] = "formValue">
-                            <div class="mat-form-group pt-3">
-                                <div class="input-field">
-                                    <select formControlName="game" name="game" id="game" class="form-control">
-                                        <option type="text" value="undefined" disabled invisible selected>Game</option>
-                                        <option type="text" *ngFor="let game of games">{{game.name}}</option>
-                                   </select>
-                                   </div>
-                            </div>
+                        <mat-form [formGroup] = "formValue">
+                            
                             <div class="form-group pt-3">
+                                <mat-form-field class="mat-input-field">
+                                    <mat-label>Game name</mat-label>
+                                    <mat-select id="game" formControlName="game" placeholder="Choose the name">
+                                        <mat-option *ngFor="let game of games" value={{game.name}}>{{game.name}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="form-group">
+                                <mat-form-field class="mat-input-field">
+                                    <mat-label>Distribution</mat-label>
+                                    <mat-select formControlName="isPhysical" placeholder="Digital or box?">
+                                        <mat-option *ngFor="let distribution of distributions" value={{distribution}}>{{distribution}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="form-group">
+                                <mat-form-field class="mat-input-field">
+                                    <mat-label>Platform</mat-label>
+                                    <mat-select formControlName="isPhysical" placeholder="Choose the system">
+                                        <mat-option *ngFor="let platform of platforms" value={{platform.name}}>{{platform.name}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="form-group">
+                                <mat-form-field class="mat-input-field">
+                                    <mat-label>Offer type</mat-label>
+                                    <mat-select formControlName="offerType" placeholder="Sell, exchange or both?">
+                                        <mat-option *ngFor="let offerType of offerTypes" value={{offerType.name}}>{{offerType.name}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="form-group">
+                                <mat-form-field class="mat-input-field">
+                                    <mat-label>Description</mat-label>
+                                    <input type="text" matInput formControlName="description" placeholder="Payment info, pickup info">
+                                        
+                                </mat-form-field>
+                            </div>
+
+                            <div *ngIf="!isExchange()" class="form-group">
+                                <mat-form-field class="mat-input-field">
+                                    <mat-label>Price (PLN)</mat-label>
+                                    <input type="number" min="1.00" matInput formControlName="price" placeholder="Adjust the price">
+                                        
+                                </mat-form-field>
+                            </div>
+
+
+
+                            <div class="form-group">
                                 <div class="input-field">
                                     <select formControlName="isPhysical" name="isPhysical" id="isPhysical" class="form-control">
-                                        <option type="text" disabled selected>Distribution</option>
+                                        <option type="text" invisible selected disabled>Distribution</option>
                                         <option type="text" *ngFor="let distribution of distributions">{{distribution}}</option>
                                    </select>
                                    </div>
-                            </div>
-                            <div class="form-group pt-3">
-                                <div class="input-field">
-                                    <select formControlName="platform" name="platform" id="platform" class="form-control">
-                                        <option type="text" value="undefined" disabled invisible selected>Platform</option>
-                                        <option type="text" *ngFor="let platform of platforms">{{platform.name}}</option>
-                                   </select>
-                                   </div>
-                            </div>
-                            <div class="form-group pt-3">
-                                <div class="input-field">
-                                    <select formControlName="offerType" name="offerType" id="offerType" class="form-control">
-                                        <option type="text" value="undefined" disabled invisible selected>Offer Type</option>
-                                        <option type="text" *ngFor="let offerType of offerTypes">{{offerType.name}}</option>
-                                   </select>
-                                   </div>
-                            </div>
-                            <div *ngIf="!isExchange()" class="form-group pt-3">
-                                <div class="input-field">
-                                    <span class="pln">PLN
-                                    <input formControlName="price" type="number" min="1.00" step="1.00" placeholder="Price">
-                                </span>
-                            </div>
                             </div>
 
                             <div class="form-inline fr mt-4 text-center"></div>
@@ -58,7 +88,7 @@
                                 <a id="forgot"class="font-weight-bold">Forgot your password?</a>
                             </div> -->
                             <button type="button" (click)="publishOffer()" class="btn btn-primary btn-block mt-4 w-100" >Add offer</button>
-                        </form>
+                        </mat-form>
                     </div>
                     <!-- <div class="mx-3 my-2 py-2 bordert">
                         <div class="text-center py-3"></div>

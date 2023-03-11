@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from  '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { MatInputModule} from '@angular/material/input'
+import { MatInputModule } from '@angular/material/input'
+import { MatSelectModule } from '@angular/material/select'
+
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
@@ -22,6 +24,9 @@ import { OffersComponent } from './offers/offers.component';
 import { AddofferComponent } from './offers/addoffer/addoffer.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { ArraySortPipe } from './login-register/helpers/alphabetical';
+import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MatOptionSelectionChange } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -56,14 +61,18 @@ import { ArraySortPipe } from './login-register/helpers/alphabetical';
     LoginRegisterModule,
     GameModule,
     NgToastModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+
   ],
 
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi: true,
-  }],
+  providers: [
+     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
+  ],
 
   bootstrap: [AppComponent]
 })

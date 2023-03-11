@@ -1,9 +1,21 @@
+
+
+.mat-input-field{
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #20a6ff;
+}
+
+
 .link
 {
    color:gray;
    text-decoration: none; 
    background-color: none;
 }
+
 
 .outer{
     height: 100vh;
@@ -15,12 +27,6 @@
     margin-bottom: 10px;
 }
 
-.forgot{
-    min-width: 100px;
-    margin-left: auto;
-    text-decoration: none;
-    cursor: pointer;
-}
 
 a:hover{
     text-decoration: none;
@@ -94,3 +100,4 @@ img {
     border-radius: 50%;
     position: relative;
 }
+

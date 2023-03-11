@@ -11,6 +11,7 @@ import { OfferDto } from './addoffer.model';
   templateUrl: './addoffer.component.html',
   styleUrls: ['./addoffer.component.css']
 })
+
 export class AddofferComponent implements OnInit {
   addOfferForm !: FormGroup;
   formValue !: FormGroup;
