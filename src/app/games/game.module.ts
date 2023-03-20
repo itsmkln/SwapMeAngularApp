@@ -13,12 +13,15 @@ import { BrowserModule } from '@angular/platform-browser';
     GamesListComponent,
     GameDetailsComponent,
   ],
+  providers: [
+    GameDetailsComponent,
+  ],
   imports: [
     RouterModule.forChild([
-      { path: "games", component: GamesListComponent},
+      { path: "offers", component: GamesListComponent},
 
       { 
-        path: "games/:id",
+        path: "offers/:id",
         canActivate: [GameDetailsGuard],
         component: GameDetailsComponent
       },

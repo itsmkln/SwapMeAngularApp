@@ -14,8 +14,8 @@ export class GameDetailsGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const id = Number(route.paramMap.get("id"));
       if (isNaN(id) || id < 1) {
-        alert("Invalid game id");
-        this.router.navigate(["/games"]);
+        alert("Invalid offer id");
+        this.router.navigate(["/offers"]);
         return false;
       }
       return true;

@@ -13,7 +13,7 @@
             <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
                 <div class="panel border bg-white">
                     <div class="panel-heading" >
-                        <h3 class="text-center pt-3 font-weight-bold" >Add an offer
+                        <h3 class="text-center pt-3 font-weight-bold" >Add your offer
 
                         </h3>
                     </div>
@@ -41,7 +41,7 @@
                             <div class="form-group">
                                 <mat-form-field class="mat-input-field">
                                     <mat-label>Platform</mat-label>
-                                    <mat-select formControlName="isPhysical" placeholder="Choose the system">
+                                    <mat-select formControlName="platform" placeholder="Choose the system">
                                         <mat-option *ngFor="let platform of platforms" value={{platform.name}}>{{platform.name}}</mat-option>
                                     </mat-select>
                                 </mat-form-field>

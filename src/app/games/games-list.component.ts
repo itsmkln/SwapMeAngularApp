@@ -45,7 +45,7 @@ export class GamesListComponent implements OnInit, OnDestroy {
     performFilter(filterBy: string): GamesModel[] {
         filterBy = filterBy.toLocaleLowerCase();
         return this.games.filter((game: GamesModel) =>
-          game.name.toLocaleLowerCase().includes(filterBy));
+          game.gameName.toLocaleLowerCase().includes(filterBy));
     }
 
 
@@ -56,15 +56,14 @@ export class GamesListComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         
-        console.log(this.getOfferDetails());
 
-        // this.sub = this.api.GetOffers().subscribe({
-        //         next: games => {
-        //             this.games = games,
-        //             this.filteredGames = games;
-        //         },
-        //         error: err => this.errorMessage = err
-        //     });
+        this.sub = this.api.GetOffers().subscribe({
+                next: games => {
+                    this.games = games,
+                    this.filteredGames = games;
+                },
+                error: err => this.errorMessage = err
+            });
 
 
     }

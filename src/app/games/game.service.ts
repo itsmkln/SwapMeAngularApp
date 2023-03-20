@@ -1,8 +1,9 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, filter, tap } from 'rxjs/operators';
 import { ApiService } from "../services/api.service";
+import { GameDetailsComponent } from "./game-details.component";
 import { GamesModel } from "./games.model";
 
 @Injectable({
@@ -11,17 +12,19 @@ import { GamesModel } from "./games.model";
 
 export class GameService {
 
-    private gameUrl = "https://localhost:7141/api/Games/getAllGames"
+    private offerUrl = "https://localhost:7141/api/Offers/getOffers"
     errorMessage: any;
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private gameDetails: GameDetailsComponent) {}
 
-    getGames(): Observable<GamesModel[]> {
-        return this.http.get<GamesModel[]>(this.gameUrl).pipe(
+    getOffers(): Observable<GamesModel[]> {
+        return this.http.get<GamesModel[]>(this.offerUrl).pipe(
             tap(data => console.log("All:" , JSON.stringify(data))),
             catchError(this.handleError)
         );
     }
+
+
 
 
 

@@ -86,8 +86,13 @@
                                 </button>
                             </th>
                             <th>GameName</th>
-                            <th>GenreId</th>
-                            <th>Actions</th>
+                            <th>Platform</th>
+                            <th>Distribution</th>
+                            <th>Genre</th>
+                            <th>Offer type</th>
+                            <th>Seller</th>
+                            <th>Price</th>
+                            <th></th>
                         </tr>
                         
                     </thead>
@@ -105,12 +110,19 @@
                                  [style.margin.px]="imageMargin">
                             </td> -->
                             <td></td>
-                            <td>{{game.name}} </td>
-                            <td>{{game.genreId}} </td>
+                            <td>{{game.gameName}} </td>
+                            <td>{{game.platformName}}</td>
+                            <td *ngIf="game.isPhysical">Box</td>
+                            <td *ngIf="!game.isPhysical">Digital</td>
+                            <td>{{game.genreName}}</td>
+                            <td>{{game.offerTypeName}}</td>
+                            <td>{{game.sellerName}}</td>
+                            <td *ngIf="game.price == 0">N/A</td>
+                            <td *ngIf="game.price > 0">{{game.price}} PLN</td>
                             <td>
-                                <a [routerLink]="['/games', game.gameId]"
+                                <a [routerLink]="['/offers', game.offerId]"
                                 class= "btn btn-primary">
-                                {{isAvailable ? "Ask vendor" : "N/A"}}
+                                Offer Details
                                 </a>
                             </td>
                         </tr>

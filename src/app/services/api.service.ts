@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { GamesModel } from '../games/games.model';
+import { OfferDto } from '../offers/addoffer/addoffer.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +39,7 @@ export class ApiService {
   //Games
   
   getGames() {
-    return this.http.get<any>(this.gameUrl + "getAllGames");
+    return this.http.get<GamesModel>(this.gameUrl + "getAllGames");
   }
 
   getPlatforms() {
@@ -56,12 +58,12 @@ export class ApiService {
 
   //Offers
 
-  PublishOffer(offerObj: any) {
-    return this.http.post<any>(`${this.offerUrl}addOffer`, offerObj)
+  PublishOffer(offerObj: OfferDto) {
+    return this.http.post(`${this.offerUrl}addOffer`, offerObj)
   }
 
   GetOffers() {
-    return this.http.get<any>(this.offerUrl + "getOffers")
+    return this.http.get<GamesModel[]>(this.offerUrl + "getOffers")
   }
 
 

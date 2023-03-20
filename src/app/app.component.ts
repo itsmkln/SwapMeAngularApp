@@ -78,7 +78,7 @@ import { UserStoreService } from "./services/user-store.service";
     <a class="nav-link" *ngIf="auth.isLoggedIn()" routerLink="/dashboard">Hello, {{firstName}}</a>
       </li>
       <li>
-      <a class="btn btn-primary" routerLink="/games">Marketplace</a>
+      <a class="btn btn-primary" routerLink="/offers">Marketplace</a>
         </li>
 
         <li>
