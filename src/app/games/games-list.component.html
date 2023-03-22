@@ -120,8 +120,9 @@
                             <td *ngIf="game.price == 0">N/A</td>
                             <td *ngIf="game.price > 0">{{game.price}} PLN</td>
                             <td>
-                                <a [routerLink]="['/offers', game.offerId]"
-                                class= "btn btn-primary">
+                                <!-- <a [routerLink]="['/offers', game.offerId]"
+                                class= "btn btn-primary"> -->
+                                <a (click)="onClick([game.offerId])" class="btn btn-primary">
                                 Offer Details
                                 </a>
                             </td>

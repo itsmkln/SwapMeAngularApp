@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameService } from './game.service';
+import { GamesListComponent } from './games-list.component';
 import { GamesModel } from "./games.model";
 
 @Component({
@@ -10,11 +11,14 @@ import { GamesModel } from "./games.model";
 export class GameDetailsComponent implements OnInit {
   pageTitle: string = "Offer Details";
   gameName: string = "";
-  
+
+  offersJSON: GamesModel | undefined;
+ 
+  dupa: any = [];
   
   test: any = [];
 
-  game: GamesModel | undefined;
+
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
@@ -34,6 +38,30 @@ export class GameDetailsComponent implements OnInit {
     const isPhysical = Boolean(this.route.snapshot.paramMap.get("isPhysical"));
     const offerId = Number(this.route.snapshot.paramMap.get("offerId"));
 
+    const huj = this.offersJSON = JSON.parse(this.route.snapshot.paramMap.get("offersObj") || "{}");
+
+    this.dupa = huj.filter((o: { offerId: number; }) => o.offerId == id);
+
+
+
+    console.log(this.dupa);
+
+    //this.offers = JSON.parse(String(this.route.snapshot.paramMap.get("offersPass")));
+    // console.log(typeof(this.offers));
+    // console.log(this.offers);
+
+    
+
+    //this.offers.filter(offer => offer.offerId == id);
+
+
+    // const offersParsed = JSON.parse(this.offers);
+    // console.log(typeof(offersParsed));
+    // console.log(offersParsed);
+    //console.log(JSON.parse(this.route.snapshot.paramMap.get("offersPass")))
+    //const obj = JSON.parse(this.route.snapshot.paramMap.get("offers_object"));
+
+
 
     //var selectedOffer = test.filter(gameId => gameId === id
 
@@ -48,48 +76,22 @@ export class GameDetailsComponent implements OnInit {
 
     this.gameName = `${gameName}`;
 
-    this.game = {
-      "gameId": gameId,
-      "gameName": gameName,
-      "offerId": id,
-      "genreId": genreId,
-      "genreName": genreName,
-      "platformName": platformName,
-      "sellerName": sellerName,
-      "offerTypeName": offerTypeName,
-      "description": description,
-      "price": price,
-      "status": status,
-      "createdOn": createdOn,
-      "isPhysical": isPhysical,
-    };
 
-    
     }
 
 
-    // filterById(id: number) {
-    //   this.test = this.test.filter(offer => offer.id === id);
-    // }
-
-    // gameDetailsTest() {
-    //   this.test.forEach((game: any) => {
-    //     if(game.offerId == game.id) {
-    //       console.log(game.gameName);
-    //     }
-    //   });
-    // }
-
-    // getOfferDetails() {
-    //   this.gameService.getOffers()
-    //   .subscribe(res =>{
-    //     this.test = res;
-    //   })
-    // }
 
     
     onBack(): void {
       this.router.navigate(["/offers"]);
+    }
+
+    onBuy(offerId: number) {
+      confirm("Are u sure?");
+
+
+
+      this.router.navigate(["/transactions"])
     }
 
   }

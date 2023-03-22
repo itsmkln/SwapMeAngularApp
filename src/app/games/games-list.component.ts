@@ -1,4 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Subscription } from "rxjs/internal/Subscription";
 import { ApiService } from "../services/api.service";
 import { GameService } from "./game.service";
@@ -40,7 +41,7 @@ export class GamesListComponent implements OnInit, OnDestroy {
     filteredGames: GamesModel[] = [];
     games: GamesModel[] = [];
 
-    constructor(private gameService: GameService, private api: ApiService) {}
+    constructor(private gameService: GameService, private api: ApiService, private router: Router) {}
 
     performFilter(filterBy: string): GamesModel[] {
         filterBy = filterBy.toLocaleLowerCase();
@@ -65,7 +66,6 @@ export class GamesListComponent implements OnInit, OnDestroy {
                 error: err => this.errorMessage = err
             });
 
-
     }
 
     getOfferDetails() {
@@ -88,6 +88,10 @@ export class GamesListComponent implements OnInit, OnDestroy {
 
     onRatingClicked(message: string): void {
         this.pageTitle = message;
+    }
+
+    onClick(offerId: any) {
+        this.router.navigate(["/offers/"+offerId, {offersObj: JSON.stringify(this.games)}])
     }
 
     

@@ -1,14 +1,57 @@
+
+
+
 <div class="card">
-    <div class="card-header">
-        {{pageTitle + ": " + game?.gameName}}
-        
-    </div>
-
-    <div class="card-header">
-        {{game?.offerId}}
-        {{game?.gameName}}
+    <div class="class-header">
 
     </div>
+
+    <div class="card-body"></div>
+
+    <div class="table-responsive">
+        <table class="table"
+                *ngFor="let offer of dupa">
+            <thead>
+                <tr>
+                    <th>GameName</th>
+                    <th>OfferId</th>
+                    <th>Platform</th>
+                    <th>Distribution</th>
+                    <th>Offer type</th>
+                    <th>Seller</th>
+                    <th *ngIf="offer.price != 0">Price</th>
+                    <th></th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                
+                <tr *ngFor="let offer of dupa">
+                    <td>{{offer.gameName}} </td>
+                    <td>{{offer.offerId}}</td>
+                    <td>{{offer.platformName}}</td>
+                    <td *ngIf="offer.isPhysical">Box</td>
+                    <td *ngIf="!offer.isPhysical">Digital</td>
+                    <td>{{offer.offerTypeName}}</td>
+                    <td>{{offer.sellerName}}</td>
+                    <td *ngIf="offer.price != 0">{{offer.price}} PLN</td>
+                    <td>
+                        <!-- <a [routerLink]="['/offers', game.offerId]"
+                        class= "btn btn-primary"> -->
+                        <a (click)="onBuy(offer.offerId)" class="btn btn-primary">
+                        Buy
+                        </a>
+                    </td>
+                </tr>
+
+                <div class="description">
+                    Description: {{offer.description}}
+                </div>
+                
+            </tbody>
+            
+        </table>
+
     
     <div class="card-footer">
     <button class="btn btn-outline-secondary"
