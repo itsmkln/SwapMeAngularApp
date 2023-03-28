@@ -1,5 +1,7 @@
 import { Component, NgModule, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { NgToastComponent, NgToastModule, NgToastService } from "ng-angular-popup";
 import { AuthService } from "./services/auth.service";
 import { UserStoreService } from "./services/user-store.service"; 
 
@@ -48,16 +50,33 @@ import { UserStoreService } from "./services/user-store.service";
   
      .btn-primary {
       background-color: #20a6ff;
-      border-color: #C7ED8A;
+      border: none;
       margin-right: 15px;
     }
   
      .btn-primary-offer {
-      background-color: #B5E61D;
+      background-color: #20a6ff;
+      color: white;
+      border: none;
+     }
+
+     .btn-primary-dashboard {
+      background-color: #20a6ff;
+      color: white;
+      border: none;
+     }
+
+     .btn-primary-logout {
+      background-color: #
      }
   
     ul {
       list-style-type: none;
+    }
+
+    .nav-item-admin {
+      list-style: none;
+      margin-right: 1rem;
     }
 
   </style>
@@ -70,9 +89,11 @@ import { UserStoreService } from "./services/user-store.service";
     <ul class="nav-list">
 
 
-    
-    <li class="nav-item">
-    <a class="nav-link" *ngIf="auth.isLoggedIn()" routerLink="/dashboard">Dashboard</a>
+    <li class="nav-item-admin">
+    <a class="btn btn-primary-dashboard" *ngIf="auth.isLoggedIn() && this.isAdmin()" routerLink="/admin">Admin Dashboard</a>
+      </li>
+    <li>
+    <a class="btn btn-primary-dashboard" *ngIf="auth.isLoggedIn()" routerLink="/dashboard">Dashboard</a>
       </li>
     <li class="nav-item">
     <a class="nav-link" *ngIf="auth.isLoggedIn()" routerLink="/dashboard">Hello, {{firstName}}</a>
@@ -82,8 +103,9 @@ import { UserStoreService } from "./services/user-store.service";
         </li>
 
         <li>
-        <a class="btn btn-primary-offer" routerLink="/addoffer">Add Offer</a>
+        <a class="btn btn-primary-offer" *ngIf="auth.isLoggedIn()" routerLink="/addoffer">Add Offer</a>
           </li>
+
 
       <li class="nav-item">
       <a class="nav-link" *ngIf="!auth.isLoggedIn()" routerLink="/login">Login</a>
@@ -115,10 +137,11 @@ export class AppComponent {
   public fullName : string = "";
   public role : string = "";
 
-  constructor(public auth: AuthService, private userStore: UserStoreService) {}
+  constructor(public auth: AuthService, private userStore: UserStoreService, private toast: NgToastService, private router: Router) {}
 
 
   ngOnInit() {
+    
 
   !!this.auth.isLoggedIn()
   {
@@ -139,13 +162,15 @@ export class AppComponent {
     })
   }
 
-
-
-
-
-
-  
-
   
   }
+  isAdmin() {
+    if (this.role != 'Admin') {
+      return false;
+      }
+      return true;
+    
+
 }
+  }
+

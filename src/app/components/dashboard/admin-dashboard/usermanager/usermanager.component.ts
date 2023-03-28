@@ -17,6 +17,7 @@ import { UserDto } from './usermanager.model-dto';
 export class UsermanagerComponent implements OnInit{
   formValue !: FormGroup;
   public users : any = [];
+  role : string = "";
   // userObj : UserModel = new UserModel();
   userObj : UserDto = new UserDto();
 
@@ -29,6 +30,7 @@ export class UsermanagerComponent implements OnInit{
   {}
 
   ngOnInit(): void {
+    this.checkAdmin();
 
     this.formValue = this.formBuilder.group({
       username: [''],
@@ -42,6 +44,19 @@ export class UsermanagerComponent implements OnInit{
     this.getUserDetails();
 
   }
+
+  checkAdmin(){
+    this.userStore.getRoleFromStore()
+    .subscribe(val=>{
+      const roleFromToken = this.auth.getRoleFromToken();
+      this.role = val || roleFromToken
+    });
+  
+    if (this.role != 'Admin') {
+      this.toast.error({detail: "ERROR", summary: "You need to login as Admin" });
+      this.router.navigate(['welcome']);
+      }
+    }
 
   getUserDetails() {
     this.api.getUsers()
@@ -109,10 +124,6 @@ export class UsermanagerComponent implements OnInit{
       this.userObj.UserId = user.userId;
       //this.userObj.Role = user.role;
       //this.userObj.UserInfo.UserInfoId = user.userInfo.userInfoId;
-
-
-
-    
     this.formValue.controls['username'].setValue(user.username);
     this.formValue.controls['firstName'].setValue(user.userInfo.firstName);
     this.formValue.controls['lastName'].setValue(user.userInfo.lastName);

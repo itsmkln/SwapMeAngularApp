@@ -10,7 +10,7 @@
 
     <div class="table-responsive">
         <table class="table"
-                *ngFor="let offer of dupa">
+                *ngFor="let offer of offers">
             <thead>
                 <tr>
                     <th>GameName</th>
@@ -26,7 +26,7 @@
             </thead>
             <tbody>
                 
-                <tr *ngFor="let offer of dupa">
+                <tr *ngFor="let offer of offers">
                     <td>{{offer.gameName}} </td>
                     <td>{{offer.offerId}}</td>
                     <td>{{offer.platformName}}</td>

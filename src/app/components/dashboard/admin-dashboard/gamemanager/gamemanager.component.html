@@ -83,7 +83,6 @@
             </div>
             <div class="table-responsive">
                 <table class="table"
-                        
                         >
                     <thead>
                         <tr>
@@ -98,9 +97,9 @@
                     </thead>
                     <tbody>
                         
-                        <tr>
+                        <tr *ngFor="let game of games">
                             <td>game.image</td>
-                            <td>game.id </td>
+                            <td>game.gameId </td>
                             <td>game.name</td>
                             <td>game.genreName</td>
                             <td></td>

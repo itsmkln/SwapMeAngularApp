@@ -1,35 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserStoreService } from 'src/app/services/user-store.service';
-import { GameManagerModel } from './gamemanager.model';
 
 @Component({
-  selector: 'gts-gamemanager',
-  templateUrl: './gamemanager.component.html',
-  styleUrls: ['./gamemanager.component.css']
+  selector: 'gts-genremanager',
+  templateUrl: './genremanager.component.html',
+  styleUrls: ['./genremanager.component.css']
 })
-export class GamemanagerComponent implements OnInit {
-  games: any = [];
-  formValue !: FormGroup;
-  gameObj : GameManagerModel = new GameManagerModel();
+export class GenremanagerComponent {
   role: string = "";
 
-  constructor(private api: ApiService, private userStore: UserStoreService, private auth: AuthService, private router: Router, private toast: NgToastService) { }
-
-  
+  constructor(private toast: NgToastService, private auth: AuthService, private api: ApiService, private router: Router, private userStore: UserStoreService) 
+  {}
 
   ngOnInit(): void {
     this.checkAdmin();
-
-    this.api.getGames()
-    .subscribe(res =>{
-      this.games = res;
-    });
-
   }
 
   checkAdmin(){

@@ -1,8 +1,9 @@
+var now = Date.now();
+
 export class TransactionsModel {
 
-    TransactionId: number = 0;
-    EndedOn: string = "";
-    Status: string = "";
+    EndedOn: string = ""+now;
+    //Status: string = "";
 
     OfferId: number = 0;
     BuyerId: number = 0;

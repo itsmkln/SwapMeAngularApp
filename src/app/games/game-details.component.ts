@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
+import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
+import { SharedService } from '../shared/shared.service';
+import { TransactionsModel } from '../transactions/transactions.model';
 import { GameService } from './game.service';
 import { GamesListComponent } from './games-list.component';
 import { GamesModel } from "./games.model";
@@ -11,18 +16,28 @@ import { GamesModel } from "./games.model";
 export class GameDetailsComponent implements OnInit {
   pageTitle: string = "Offer Details";
   gameName: string = "";
+  currentOffer: number = Number(this.route.snapshot.paramMap.get("id"));
 
+  idStr = this.auth.getId();
+  userId: number = +this.idStr;
+  transactionObj: TransactionsModel = new TransactionsModel();
   offersJSON: GamesModel | undefined;
  
-  dupa: any = [];
+  offers: any = [];
   
   test: any = [];
 
 
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private auth: AuthService,
+     private api: ApiService, private toast: NgToastService, private shared: SharedService) 
+  {
+  }
 
   ngOnInit(): void {
+
+  
+
     const id = Number(this.route.snapshot.paramMap.get("id"));
     const gameId = Number(this.route.snapshot.paramMap.get("gameId"));
     const genreId = Number(this.route.snapshot.paramMap.get("genreId"));
@@ -38,46 +53,15 @@ export class GameDetailsComponent implements OnInit {
     const isPhysical = Boolean(this.route.snapshot.paramMap.get("isPhysical"));
     const offerId = Number(this.route.snapshot.paramMap.get("offerId"));
 
-    const huj = this.offersJSON = JSON.parse(this.route.snapshot.paramMap.get("offersObj") || "{}");
-
-    this.dupa = huj.filter((o: { offerId: number; }) => o.offerId == id);
-
-
-
-    console.log(this.dupa);
-
-    //this.offers = JSON.parse(String(this.route.snapshot.paramMap.get("offersPass")));
-    // console.log(typeof(this.offers));
-    // console.log(this.offers);
-
-    
-
-    //this.offers.filter(offer => offer.offerId == id);
-
-
-    // const offersParsed = JSON.parse(this.offers);
-    // console.log(typeof(offersParsed));
-    // console.log(offersParsed);
-    //console.log(JSON.parse(this.route.snapshot.paramMap.get("offersPass")))
-    //const obj = JSON.parse(this.route.snapshot.paramMap.get("offers_object"));
-
-
-
-    //var selectedOffer = test.filter(gameId => gameId === id
-
-    
-
-
-
-
+    //const offersGet = this.offersJSON = JSON.parse(this.route.snapshot.paramMap.get("offersObj") || "{}");
+    const offersGet = this.offersJSON = JSON.parse((this.shared.offerObj) || "{}");
+    this.offers = offersGet.filter((o: { offerId: number; }) => o.offerId == id);
+    console.log(this.offers);
 
     this.pageTitle += `: id ${offerId}`;
-
-
     this.gameName = `${gameName}`;
-
-
     }
+
 
 
 
@@ -87,11 +71,34 @@ export class GameDetailsComponent implements OnInit {
     }
 
     onBuy(offerId: number) {
-      confirm("Are u sure?");
+      confirm("U sure?");
 
-
+      this.acceptOffer();
 
       this.router.navigate(["/transactions"])
+    }
+
+    acceptOffer() {
+      var currentDate = new Date();
+
+      console.log(this.offers.offerId);
+      
+      this.transactionObj.OfferId = this.currentOffer;
+      this.transactionObj.EndedOn = currentDate.toJSON();
+      this.transactionObj.BuyerId = this.userId;
+      //this.transactionObj.Status = "In progress";
+
+      console.log(this.transactionObj);
+
+
+      this.api.AcceptOffer(this.transactionObj)
+      .subscribe(res => {
+        alert("ŁADZIA")
+        //gettransactiondetails?
+        this.toast.success({detail: "SUCCESS", summary: "Offer has been accepted."})
+        this.router.navigate(["transactions"])
+      })
+
     }
 
   }

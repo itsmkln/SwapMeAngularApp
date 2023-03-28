@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GamesModel } from '../games/games.model';
 import { OfferDto } from '../offers/addoffer/addoffer.model';
+import { TransactionsViewModel } from '../offers/transactions/transactionsView.model';
+import { TransactionsModel } from '../transactions/transactions.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,7 @@ export class ApiService {
   private userUrl: string = "https://localhost:7141/api/Users/"
   private offerUrl: string = "https://localhost:7141/api/Offers/"
   private gameUrl: string = "https://localhost:7141/api/Games/"
+  private transactionUrl: string = "https://localhost:7141/api/Transactions/"
   private setAdmUrl: string = "https://localhost:7141/api/Users/setadmin"
   private deleteUserUrl: string = "https://localhost:7141/api/Users/delete/"
 
@@ -64,6 +67,16 @@ export class ApiService {
 
   GetOffers() {
     return this.http.get<GamesModel[]>(this.offerUrl + "getOffers")
+  }
+
+  //Transactions
+
+  AcceptOffer(transactionObj: TransactionsModel) {
+    return this.http.post(`${this.transactionUrl}addTransaction`, transactionObj)
+  }
+
+  GetTransactions() {
+    return this.http.get<TransactionsViewModel>(this.transactionUrl + "getTransactions")
   }
 
 

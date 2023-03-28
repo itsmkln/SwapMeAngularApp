@@ -27,6 +27,9 @@ import { ArraySortPipe } from './login-register/helpers/alphabetical';
 import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatOptionSelectionChange } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OffermanagerComponent } from './components/dashboard/admin-dashboard/offermanager/offermanager.component';
+import { GenremanagerComponent } from './components/dashboard/admin-dashboard/genremanager/genremanager.component';
+import { PlatformmanagerComponent } from './components/dashboard/admin-dashboard/platformmanager/platformmanager.component';
 
 
 @NgModule({
@@ -41,6 +44,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     OffersComponent,
     AddofferComponent,
     TransactionsComponent,
+    OffermanagerComponent,
+    GenremanagerComponent,
+    PlatformmanagerComponent,
   ],
   imports: [
     BrowserModule,

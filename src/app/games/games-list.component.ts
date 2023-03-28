@@ -1,7 +1,8 @@
 import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { NavigationExtras, Router } from "@angular/router";
 import { Subscription } from "rxjs/internal/Subscription";
 import { ApiService } from "../services/api.service";
+import { SharedService } from "../shared/shared.service";
 import { GameService } from "./game.service";
 import { GamesModel } from "./games.model";
 
@@ -26,6 +27,7 @@ export class GamesListComponent implements OnInit, OnDestroy {
     sub!: Subscription;
     offers: any = [];
     genres: any = [];
+    state: string = "huj";
     //public games : any = []
 
     private _listFilter: string = "";
@@ -41,7 +43,8 @@ export class GamesListComponent implements OnInit, OnDestroy {
     filteredGames: GamesModel[] = [];
     games: GamesModel[] = [];
 
-    constructor(private gameService: GameService, private api: ApiService, private router: Router) {}
+    constructor(private gameService: GameService, private api: ApiService, private router: Router, private shared: SharedService) {}
+
 
     performFilter(filterBy: string): GamesModel[] {
         filterBy = filterBy.toLocaleLowerCase();
@@ -91,7 +94,11 @@ export class GamesListComponent implements OnInit, OnDestroy {
     }
 
     onClick(offerId: any) {
-        this.router.navigate(["/offers/"+offerId, {offersObj: JSON.stringify(this.games)}])
+        this.shared.offerObj = JSON.stringify(this.games); 
+        this.router.navigate(["/offers/"+offerId,
+
+        //{ offersObj: JSON.stringify(this.games)}, caused problems with URL
+        ])
     }
 
     
