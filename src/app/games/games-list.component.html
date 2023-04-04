@@ -63,7 +63,7 @@
             <div class="col-md-4; form-group has-search" >
                 <span class="fa fa-search form-control-feedback"></span>
                 <input type="text"
-                class="form-control form-control-lg rounded" placeholder="Type Keywords"
+                class="form-control form-control-lg rounded" placeholder="Game Keywords"
                 aria-label="Type Keywords" aria-describedby="basic-addon2"
                 [(ngModel)]="listFilter"/>
                 </div>
@@ -85,6 +85,7 @@
                                     {{hideImage ? "Show" : "Hide"}} Image
                                 </button>
                             </th>
+                            <th>OfferId</th>
                             <th>GameName</th>
                             <th>Platform</th>
                             <th>Distribution</th>
@@ -92,13 +93,16 @@
                             <th>Offer type</th>
                             <th>Seller</th>
                             <th>Price</th>
-                            <th></th>
+                            <th>CreatedOn</th>
+                            <th>State</th>
+                            <th>Action</th>
                         </tr>
                         
                     </thead>
+
                     <tbody>
-                        
-                        <tr *ngFor="let game of filteredGames">
+                        <tr *ngFor="let offer of filteredGames">
+                        <ng-container *ngIf="offer.status == 'New' || offer.status == 'Active' ">
                             <!-- <div *ngFor="let genre of genres"> -->
                             <!-- <div *ngIf="game.genreId == genres.genreId"> -->
                                 
@@ -110,25 +114,31 @@
                                  [style.margin.px]="imageMargin">
                             </td> -->
                             <td></td>
-                            <td>{{game.gameName}} </td>
-                            <td>{{game.platformName}}</td>
-                            <td *ngIf="game.isPhysical">Box</td>
-                            <td *ngIf="!game.isPhysical">Digital</td>
-                            <td>{{game.genreName}}</td>
-                            <td>{{game.offerTypeName}}</td>
-                            <td>{{game.sellerName}}</td>
-                            <td *ngIf="game.price == 0">N/A</td>
-                            <td *ngIf="game.price > 0">{{game.price}} PLN</td>
+                            <td>{{offer.offerId}}</td>
+                            <td>{{offer.gameName}} </td>
+                            <td>{{offer.platformName}}</td>
+                            <td *ngIf="offer.isPhysical">Box</td>
+                            <td *ngIf="!offer.isPhysical">Digital</td>
+                            <td>{{offer.genreName}}</td>
+                            <td>{{offer.offerTypeName}}</td>
+                            <td>{{offer.sellerName}}</td>
+                            <td *ngIf="offer.price == 0">N/A</td>
+                            <td *ngIf="offer.price > 0">{{offer.price}} PLN</td>
+                            <td>{{offer.createdOn | date: "dd-MM-yyyy"}}, {{offer.createdOn | date: "HH:mm"}}</td>
+                            <td>{{offer.sellerState}}</td>
                             <td>
                                 <!-- <a [routerLink]="['/offers', game.offerId]"
                                 class= "btn btn-primary"> -->
-                                <a (click)="onClick([game.offerId])" class="btn btn-primary">
+                                <a (click)="onClick([offer.offerId])" class="btn btn-primary">
                                 Offer Details
                                 </a>
+
                             </td>
+                        </ng-container>
                         </tr>
 
                     </tbody>
+
                 </table>
             </div>
         </div>

@@ -7,9 +7,9 @@
                           <h3 class="text-center pt-3 font-weight-bold" >Dashboard</h3> 
                           <div class="panel-body p-3">
                                 
-                              <div class="btn btn-primary"> My offers</div>
-                              <div class="btn btn-primary"> My purchases</div>
-                              <div class="btn btn-primary"> My profile</div>
+                              <a [routerLink]="['/myoffers']" class="btn btn-primary"> My offers</a>
+                              <a [routerLink]="['/mytransactions']" class="btn btn-primary"> My transactions</a>
+                              <a [routerLink]="['/myprofile']" class="btn btn-primary"> My profile</a>
                               <!-- <div class="btn btn-primary"> Change password </div> -->
                               <button (click)="deleteUser(userid)" class="btn btn-primary"> Remove my account </button>
                                 <div></div>
@@ -20,9 +20,4 @@
           </div>
       </div>
   </div>
-
-<h4>Users</h4>
-<ul *ngFor="let user of users"> 
-    <li>{{user.username}}</li>
-    </ul>
 

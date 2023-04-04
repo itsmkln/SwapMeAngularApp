@@ -1,0 +1,34 @@
+.btn.btn-primary {
+    background-color: #20a6ff;
+    border: none;
+}
+
+th {
+    text-align: center;
+}
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+.col-md-6 {
+    margin-top: 50px;
+}
+
+
+.main {
+width: 50%;
+margin: 50px auto;
+}
+
+
+
+.actions{
+color: #20a6ff;
+
+}
+
+.actions :hover{
+color: red;
+}

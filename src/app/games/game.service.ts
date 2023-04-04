@@ -4,7 +4,7 @@ import { Observable, throwError } from "rxjs";
 import { catchError, filter, tap } from 'rxjs/operators';
 import { ApiService } from "../services/api.service";
 import { GameDetailsComponent } from "./game-details.component";
-import { GamesModel } from "./games.model";
+import { OffersModel } from "./offers.model";
 
 @Injectable({
     providedIn: "root"
@@ -17,8 +17,8 @@ export class GameService {
 
     constructor(private http: HttpClient, private gameDetails: GameDetailsComponent) {}
 
-    getOffers(): Observable<GamesModel[]> {
-        return this.http.get<GamesModel[]>(this.offerUrl).pipe(
+    getOffers(): Observable<OffersModel[]> {
+        return this.http.get<OffersModel[]>(this.offerUrl).pipe(
             tap(data => console.log("All:" , JSON.stringify(data))),
             catchError(this.handleError)
         );

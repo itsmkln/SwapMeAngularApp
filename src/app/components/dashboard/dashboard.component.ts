@@ -23,12 +23,7 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
 
-      this.userid = this.auth.getId();
-
-      this.api.getUsers()
-      .subscribe(res =>{
-        this.users = res;
-      });
+    this.userid = this.auth.getId();
 
     this.userStore.getFullNameFromStore()
     .subscribe(val=>{
@@ -64,23 +59,6 @@ export class DashboardComponent implements OnInit {
   
   }
   
-  // deleteMyAccount() {
-  //     this.api.DeleteMe(this.username)
-  //     .subscribe({
-  //       next: (res) => {
-  //         let username = this.auth.storeUsername(res.username);
-  //         console.log("huj")
-  //         console.log(this.auth.storeUsername(res.username));
-  //         if (username != null) {
-  //         this.toast.success({detail: "SUCCESS", summary:"Done", duration: 2000});
-  //         this.auth.logout();
-  //         this.router.navigate(['dashboard'])
-  //         }
-  //       },
-  //     error: (err) => {
-  //       this.toast.error({detail: "ERROR", summary: "Something went wrong!", duration: 2000});
-  //       console.log(err);
-  //       }});
     }
   
 

@@ -7,7 +7,8 @@ import { SharedService } from '../shared/shared.service';
 import { TransactionsModel } from '../transactions/transactions.model';
 import { GameService } from './game.service';
 import { GamesListComponent } from './games-list.component';
-import { GamesModel } from "./games.model";
+import { OffersModel } from './offers.model';
+import { StatusUpdateModel } from './status-update.model';
 
 @Component({
   templateUrl: './game-details.component.html',
@@ -17,11 +18,12 @@ export class GameDetailsComponent implements OnInit {
   pageTitle: string = "Offer Details";
   gameName: string = "";
   currentOffer: number = Number(this.route.snapshot.paramMap.get("id"));
+  statusObj: StatusUpdateModel = new StatusUpdateModel();
 
   idStr = this.auth.getId();
   userId: number = +this.idStr;
   transactionObj: TransactionsModel = new TransactionsModel();
-  offersJSON: GamesModel | undefined;
+  offersJSON: OffersModel | undefined;
  
   offers: any = [];
   
@@ -86,6 +88,11 @@ export class GameDetailsComponent implements OnInit {
       this.transactionObj.OfferId = this.currentOffer;
       this.transactionObj.EndedOn = currentDate.toJSON();
       this.transactionObj.BuyerId = this.userId;
+
+      this.statusObj.OfferId = this.currentOffer;
+      this.statusObj.Status = "Ended";
+
+      console.log(this.statusObj.OfferId + " : " + this.statusObj.Status)
       //this.transactionObj.Status = "In progress";
 
       console.log(this.transactionObj);
@@ -93,12 +100,22 @@ export class GameDetailsComponent implements OnInit {
 
       this.api.AcceptOffer(this.transactionObj)
       .subscribe(res => {
+        this.api.UpdateStatus(this.statusObj)
+        .subscribe(res => {
+        console.log(this.statusObj);
         alert("ŁADZIA")
         //gettransactiondetails?
         this.toast.success({detail: "SUCCESS", summary: "Offer has been accepted."})
         this.router.navigate(["transactions"])
       })
+    })
 
+
+    
+
+    }
+
+    setStatusEnded(){
     }
 
   }

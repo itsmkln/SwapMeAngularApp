@@ -19,6 +19,9 @@ import { UserStoreService } from '../services/user-store.service';
 import { GameManagerModel } from '../components/dashboard/admin-dashboard/gamemanager/gamemanager.model';
 import { GenremanagerComponent } from '../components/dashboard/admin-dashboard/genremanager/genremanager.component';
 import { PlatformmanagerComponent } from '../components/dashboard/admin-dashboard/platformmanager/platformmanager.component';
+import { MyOffersComponent } from '../components/dashboard/my-offers/my-offers.component';
+import { MyTransactionsComponent } from '../components/dashboard/my-transactions/my-transactions.component';
+import { MyProfileComponent } from '../components/dashboard/my-profile/my-profile.component';
 
 
 @NgModule({
@@ -31,6 +34,9 @@ import { PlatformmanagerComponent } from '../components/dashboard/admin-dashboar
       { path: "login", component: LoginComponent},
       { path: "register", component: RegisterComponent},
       { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard]},
+      { path: "myoffers", component: MyOffersComponent, canActivate: [AuthGuard]},
+      { path: "mytransactions", component: MyTransactionsComponent, canActivate: [AuthGuard]},
+      { path: "myprofile", component: MyProfileComponent, canActivate: [AuthGuard]},
       { path: "usermanager", component: UsermanagerComponent},
       { path: "gamemanager", component: GamemanagerComponent},
       { path: "offermanager", component: OffermanagerComponent},

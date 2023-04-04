@@ -1,4 +1,4 @@
-export interface GamesModel {
+export interface OffersModel {
     gameId: number// = 0;
     gameName: string;
     genreId: number// = 0;
@@ -12,6 +12,9 @@ export interface GamesModel {
     status: string;
     createdOn: string;
     isPhysical: boolean;
+
+    sellerCity: string;
+    sellerState: string;
 
     //image?: HTMLImageElement;
 }

@@ -30,6 +30,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OffermanagerComponent } from './components/dashboard/admin-dashboard/offermanager/offermanager.component';
 import { GenremanagerComponent } from './components/dashboard/admin-dashboard/genremanager/genremanager.component';
 import { PlatformmanagerComponent } from './components/dashboard/admin-dashboard/platformmanager/platformmanager.component';
+import { MyOffersComponent } from './components/dashboard/my-offers/my-offers.component';
+import { MyProfileComponent } from './components/dashboard/my-profile/my-profile.component';
+import { MyTransactionsComponent } from './components/dashboard/my-transactions/my-transactions.component';
+import { MyTransactionsDetailsComponent } from './components/dashboard/my-transactions/my-transactions-details/my-transactions-details.component';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -47,6 +52,10 @@ import { PlatformmanagerComponent } from './components/dashboard/admin-dashboard
     OffermanagerComponent,
     GenremanagerComponent,
     PlatformmanagerComponent,
+    MyOffersComponent,
+    MyProfileComponent,
+    MyTransactionsComponent,
+    MyTransactionsDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +80,7 @@ import { PlatformmanagerComponent } from './components/dashboard/admin-dashboard
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatTableModule,
     BrowserAnimationsModule,
 
   ],

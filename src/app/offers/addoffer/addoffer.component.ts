@@ -64,15 +64,14 @@ export class AddofferComponent implements OnInit {
     var sellerIdNumber = Number(this.auth.getId());
     this.offerObj.SellerId = sellerIdNumber;
     this.offerObj.Description = this.formValue.value.description;
-    this.offerObj.Status = "New";
+    this.offerObj.Status = "Active";
 
     this.api.PublishOffer(this.offerObj)
     .subscribe(res=>{
       console.log(this.offerObj);
-      alert("okurwa")
       this.getOfferDetails();
       this.toast.success({detail: "SUCCESS", summary:"Offer has been published."})
-      this.router.navigate(["games"])
+      this.router.navigate(["myoffers"])
     })
   }
       

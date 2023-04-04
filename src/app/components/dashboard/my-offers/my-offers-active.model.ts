@@ -1,5 +1,4 @@
-let date: Date = new Date();
-export class TransactionsViewModel {
+export class OffersActiveModel {
 
     TransactionId: number = 0;
     SellerId: number = 0;
@@ -10,22 +9,11 @@ export class TransactionsViewModel {
     SellerCity: string = "";
     SellerPhoneNumber: string = "";
 
-    BuyerId: number = 0;
-    BuyerUsername: string = "";
-    BuyerFirstName: string = "";
-    BuyerLastName: string = "";
-    BuyerEmail: string = "";
-    BuyerCity: string = "";
-    BuyerState: string = "";
-    BuyerPhoneNumber: string = "";
-
     OfferId: number = 0;
     GameName: string = "";
     PlatformName: string = "";
     OfferTypeName: string = "";
     OfferDescription: string = "";
-    Status: string = "";
-    CreatedOn: Date = date;
-    EndedOn: Date = date;
+    CreatedOn: string = "";
 
 }

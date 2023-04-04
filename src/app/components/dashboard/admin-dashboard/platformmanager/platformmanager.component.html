@@ -1,1 +1,62 @@
-<p>platformmanager works!</p>
+<div class="card">
+    <div class="class-header">
+        
+    </div>
+    <div class="card-body">
+
+        <h1> Genre manager </h1>
+
+        <button class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#addPlatformModal"> Add another genre </button>   
+            <div class="row">
+                
+                <div class="col-sm-6">
+            </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table"> 
+                    <thead>
+                        <tr>
+                            <th>PlatformId</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr *ngFor="let platform of platforms">
+                            <td>{{platform.platformId}}</td>
+                            <td>{{platform.name}}</td>
+                        
+                            <td><button class="btn btn-primary delete" (click)="deletePlatform(platform.platformId)">Delete</button></td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
+
+
+<div class="modal fade" id="addPlatformModal" tabindex="-1" aria-labelledby="addPlatform" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add the genre</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup] = "formValue">
+
+                    <div class="mb-3">
+                        <label for="PlatformName" class="form-label">Platform Name</label>
+                        <input type="text" formControlName="platformName" placeholder="Enter the platform name" class="form-control" id="InputGenre">
+                    </div>
+                        </form>
+
+                <div class="modal-footer">
+                    <button id="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" (click)="addPlatform()" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                

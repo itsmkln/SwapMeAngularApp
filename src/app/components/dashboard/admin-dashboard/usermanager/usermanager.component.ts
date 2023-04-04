@@ -96,7 +96,6 @@ export class UsermanagerComponent implements OnInit{
     this.userObj.City = this.formValue.value.city;
     this.api.UpdateUser(this.userObj)
     .subscribe(res=>{
-      alert("WOWOWOWOWO")
       let ref = document.getElementById('close');
       ref?.click();
       this.getUserDetails();
@@ -106,24 +105,8 @@ export class UsermanagerComponent implements OnInit{
   }
 
 
-  // onEdit(user : any){
-  //   this.userObj.UserId = user.userId;
-  //   //this.userObj.Role = user.role;
-  //   this.userObj.UserInfo.UserInfoId = user.userInfo.userInfoId;
-
-    
-  //   console.log(this.userObj.UserInfo.UserInfoId)
-  //   console.log(user.userInfo.userInfoId)
-
-  //   console.log(user.userInfo.userinfoid)
-  //   console.log(this.userObj.UserId);
-  //   console.log(this.userObj.UserInfo.UserInfoId)
-  //   console.log(this.userObj.UserInfo.FirstName);
-
     onEdit(user : any){
-      this.userObj.UserId = user.userId;
-      //this.userObj.Role = user.role;
-      //this.userObj.UserInfo.UserInfoId = user.userInfo.userInfoId;
+    this.userObj.UserId = user.userId;
     this.formValue.controls['username'].setValue(user.username);
     this.formValue.controls['firstName'].setValue(user.userInfo.firstName);
     this.formValue.controls['lastName'].setValue(user.userInfo.lastName);

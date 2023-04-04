@@ -1,5 +1,6 @@
 let date: Date = new Date();
-export class TransactionsViewModel {
+
+export class OffersEndedModel {
 
     TransactionId: number = 0;
     SellerId: number = 0;

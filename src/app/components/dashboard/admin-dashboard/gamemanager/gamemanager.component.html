@@ -1,177 +1,88 @@
+<!-- <table mat-table [dataSource]="data" class="mat-elevation-z8">
 
-<style>
-
-    th {
-        text-align: center;
-    }
-    td {
-        text-align: center;
-        vertical-align: middle;
-    }
+    <ng-container  matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let element"> {{element.gameId}} </td>
+      </ng-container>
 
 
-    .col-md-6 {
-        margin-top: 50px;
-    }
-
-    /* wrapping the search box */
-
-.main {
-    width: 50%;
-    margin: 50px auto;
-}
-
-/* text input with search icon */
-
-.has-search .form-control {
-    padding-left: 2.375rem;
-}
-
-.has-search .form-control-feedback {
-    position: absolute;
-    z-index: 2;
-    display: block;
-    width: 2.375rem;
-    height: 2.375rem;
-    line-height: 3.100rem;
-    text-align: center;
-    pointer-events: none;
-    color: #aaa;
-}
-
-.filt-by{
-    padding-top: 25px;
-}
-
-.actions{
-    color: #20a6ff;
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     
-}
 
-.actions :hover{
-    color: red;
-}
-
-
-
-
-
-</style>
+</table> -->
 
 
 
 <div class="card">
     <div class="class-header">
+        
     </div>
     <div class="card-body">
+
         <h1> Game manager </h1>
-            <div class="col-md-4; form-group has-search" >
-                <span class="fa fa-search form-control-feedback"></span>
-                <input type="text"
-                class="form-control form-control-lg rounded" placeholder="Type Keywords"
-                aria-label="Type Keywords" aria-describedby="basic-addon2"
-                
-                />
-                </div>
+
+        <button class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#addGameModal"> Add another game </button>   
             <div class="row">
-                <div class="col-sm-6"
-                >
-                <div class="col-sm-6; filt-by">
-                    <h4>Filtered by: </h4>
-                </div>
+                
+                <div class="col-sm-6">
             </div>
             </div>
             <div class="table-responsive">
-                <table class="table"
-                        >
+                <table class="table"> 
                     <thead>
                         <tr>
-                            <th>Image</th>
-                            <th>Id</th>
+                            <th>GameId</th>
                             <th>Name</th>
                             <th>Genre</th>
-                            <th></th> <th></th>
-                            <th></th> <th></th>
+                            <th>Action</th> 
                         </tr>
-                        
                     </thead>
                     <tbody>
                         
                         <tr *ngFor="let game of games">
-                            <td>game.image</td>
-                            <td>game.gameId </td>
-                            <td>game.name</td>
-                            <td>game.genreName</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{game.gameId}}</td>
+                            <td>{{game.name}}</td>
+                            <td>{{game.genreName}}</td>
                         
-                            <td><button class="btn btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal"        > Edit </button> </td>
-                            <td><button class="btn btn-primary delete" 
-                                
-                                
-                                
-                                > Delete </button></td>
+                            <td><button class="btn btn-primary delete" (click)="deleteGame(game.gameId)">Delete</button></td>
                     </tbody>
                 </table>
             </div>
         </div>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="addGameModal" tabindex="-1" aria-labelledby="addgame" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">User Details</h5>
+                <h5 class="modal-title">Add the game</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
-
-
-
+                <form [formGroup] = "formValue">
 
                     <div class="mb-3">
-                        <label for="Username" class="form-label">Username</label>
-                        <input type="text" formControlName="username" class="form-control" id="exampleInputEmail1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="FirstName" class="form-label">First Name</label>
-                        <input type="text" formControlName="firstName" class="form-control" id="exampleInputEmail1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="LastName" class="form-label">Last Name</label>
-                        <input type="text" formControlName="lastName" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="Email" class="form-label">Email address</label>
-                        <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <div class="mb-3">
-                        <label for="PhoneNumber" class="form-label">Phone Number</label>
-                        <input type="text" formControlName="phoneNumber" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="State" class="form-label">State</label>
-                        <input type="text" formControlName="state" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="City" class="form-label">City</label>
-                        <input type="text" formControlName="city" class="form-control" id="exampleInputPassword1">
+                        <label for="GameName" class="form-label">Game Name</label>
+                        <input type="text" formControlName="gameName" placeholder="Enter the game name" class="form-control" id="InputGame">
                     </div>
 
+                    <div class="mb-3">
+                        <label for="Genre" class="form-label">Genre</label>
+                            <select formControlName="genreId" class="form-control" name="genre" id="genre">
+                                <option type="text" value="" disabled selected>Select the genre</option>
+                                <option type="text" *ngFor="let genre of genres" value="{{genre.genreId}}">{{genre.name}}</option>
+                           </select>
+                           </div>
+                        </form>
 
-
-
-            </div>
-            <div class="modal-footer">
-                <button id="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button"
-                
-                
-
-
-                 class="btn btn-primary">Update</button>
+                <div class="modal-footer">
+                    <button id="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" (click)="addGame()" class="btn btn-primary">Add</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+                

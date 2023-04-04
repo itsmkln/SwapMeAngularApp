@@ -19,6 +19,9 @@
                     <th>Distribution</th>
                     <th>Offer type</th>
                     <th>Seller</th>
+                    <th>State</th>
+                    <th>City</th>
+
                     <th *ngIf="offer.price != 0">Price</th>
                     <th></th>
                 </tr>
@@ -34,6 +37,8 @@
                     <td *ngIf="!offer.isPhysical">Digital</td>
                     <td>{{offer.offerTypeName}}</td>
                     <td>{{offer.sellerName}}</td>
+                    <td>{{offer.sellerState}}</td>
+                    <td>{{offer.sellerCity}}</td>
                     <td *ngIf="offer.price != 0">{{offer.price}} PLN</td>
                     <td>
                         <!-- <a [routerLink]="['/offers', game.offerId]"
@@ -44,8 +49,8 @@
                     </td>
                 </tr>
 
-                <div class="description">
-                    Description: {{offer.description}}
+                <div class="card-body"> 
+                    Description from<b>{{offer.sellerName}}:</b><br> {{offer.description}}
                 </div>
                 
             </tbody>

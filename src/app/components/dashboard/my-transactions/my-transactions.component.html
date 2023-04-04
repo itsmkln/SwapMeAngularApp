@@ -1,0 +1,43 @@
+<p>my-transactions works!</p>
+
+
+
+
+<div class="table-responsive">
+    <table class="table"
+            *ngIf="transactions.length">
+        <thead>
+            <tr>
+                <th>
+                </th>
+                <th>OfferId</th>
+                <th>GameName</th>
+                <th>PlatformName</th>
+                <th>OfferType</th>
+                <th>Buyer Username</th>
+                <th>Status</th>
+                <th>CreatedOn</th>
+                <th>EndedOn</th>
+                <th>Action</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            
+            <tr *ngFor="let transaction of transactions">
+                <td>
+                </td>
+                <td>{{transaction.offerId}}</td>
+                <td>{{transaction.gameName}}</td>
+                <td>{{transaction.platformName}}</td>
+                <td>{{transaction.offerTypeName}}</td>
+                <td>{{transaction.buyerUsername}}</td>
+                <td>{{transaction.status}}</td>
+                <td>{{transaction.createdOn | date: "dd-MM-yyyy"}}, {{transaction.createdOn | date: "HH:mm"}}</td>
+                <td>{{transaction.endedOn | date: "dd-MM-yyyy"}}, {{transaction.endedOn | date: "HH:mm"}}</td>
+                <td><button class="btn btn-primary details"> Details </button> </td>
+
+            </tr>
+            </tbody>
+            </table>
+    </div>

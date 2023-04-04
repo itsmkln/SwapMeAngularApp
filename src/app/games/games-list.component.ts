@@ -4,7 +4,7 @@ import { Subscription } from "rxjs/internal/Subscription";
 import { ApiService } from "../services/api.service";
 import { SharedService } from "../shared/shared.service";
 import { GameService } from "./game.service";
-import { GamesModel } from "./games.model";
+import { OffersModel } from "./offers.model";
 
 @Component({
     templateUrl: './games-list.component.html',
@@ -27,7 +27,6 @@ export class GamesListComponent implements OnInit, OnDestroy {
     sub!: Subscription;
     offers: any = [];
     genres: any = [];
-    state: string = "huj";
     //public games : any = []
 
     private _listFilter: string = "";
@@ -40,15 +39,15 @@ export class GamesListComponent implements OnInit, OnDestroy {
         this.filteredGames = this.performFilter(value);
     }
 
-    filteredGames: GamesModel[] = [];
-    games: GamesModel[] = [];
+    filteredGames: OffersModel[] = [];
+    games: OffersModel[] = [];
 
     constructor(private gameService: GameService, private api: ApiService, private router: Router, private shared: SharedService) {}
 
 
-    performFilter(filterBy: string): GamesModel[] {
+    performFilter(filterBy: string): OffersModel[] {
         filterBy = filterBy.toLocaleLowerCase();
-        return this.games.filter((game: GamesModel) =>
+        return this.games.filter((game: OffersModel) =>
           game.gameName.toLocaleLowerCase().includes(filterBy));
     }
 
@@ -75,13 +74,6 @@ export class GamesListComponent implements OnInit, OnDestroy {
         this.api.GetOffers()
         .subscribe(res =>{
           this.offers = res;
-        })
-      }
-
-    getAllGenres() {
-        this.api.getGenres()
-        .subscribe(res=>{
-          this.genres = res;
         })
       }
 
