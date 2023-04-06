@@ -1,22 +1,17 @@
-<p>my-offers works!</p>
-
-
-
-<div class="table-responsive"> <h4 *ngIf="endedOffers.length">Ended Offers</h4>
+<div class="table-responsive"> <h2 *ngIf="endedOffers.length">Ended Offers</h2>
     <table class="table"
             *ngIf="endedOffers.length">
         <thead>
             <tr>
                 <th>
                 </th>
-                <th>OfferId</th>
                 <th>GameName</th>
                 <th>PlatformName</th>
                 <th>OfferType</th>
                 <th>Buyer Username</th>
-                <th>Status</th>
                 <th>CreatedOn</th>
                 <th>EndedOn</th>
+                <th>Price</th>
                 <th>Action</th>
             </tr>
             
@@ -26,15 +21,17 @@
             <tr *ngFor="let offer of endedOffers">
                 <td>
                 </td>
-                <td>{{offer.offerId}}</td>
                 <td>{{offer.gameName}}</td>
                 <td>{{offer.platformName}}</td>
                 <td>{{offer.offerTypeName}}</td>
                 <td>{{offer.buyerUsername}}</td>
-                <td>{{offer.status}}</td>
                 <td>{{offer.createdOn | date: "dd-MM-yyyy"}}, {{offer.createdOn | date: "HH:mm"}}</td>
                 <td>{{offer.endedOn | date: "dd-MM-yyyy"}}, {{offer.endedOn | date: "HH:mm"}}</td>
-                <td><button class="btn btn-primary details"> Details </button> </td>
+                <td *ngIf="offer.price == 0">N/A</td>
+                <td *ngIf="offer.price > 0">{{offer.price}} PLN</td>
+                <td><button
+                      (click)="viewDetails(offer.offerId)"
+                      class="btn btn-primary details"> Details </button> </td>
             </tr>
             </tbody>
             </table>
@@ -42,19 +39,19 @@
 
 
 
-    <div class="table-responsive"> <h4>Active Offers</h4>
+    <div class="table-responsive"> <h2>Active Offers</h2>
         <table class="table"
                 *ngIf="activeOffers.length">
             <thead>
                 <tr>
                     <th>
                     </th>
-                    <th>OfferId</th>
                     <th>GameName</th>
                     <th>PlatformName</th>
                     <th>OfferType</th>
-                    <th>Status</th>
+                    <th>Description</th>
                     <th>CreatedOn</th>
+                    <th>Price</th>
                     <th>Action</th>
                 </tr>
                 
@@ -64,14 +61,57 @@
                 <tr *ngFor="let offer of activeOffers">
                     <td>
                     </td>
-                    <td>{{offer.offerId}}</td>
                     <td>{{offer.gameName}}</td>
                     <td>{{offer.platformName}}</td>
                     <td>{{offer.offerTypeName}}</td>
-                    <td>{{offer.status}}</td>
+                    <td>{{offer.offerDescription}}</td>
                     <td>{{offer.createdOn | date: "dd-MM-yyyy"}}, {{offer.createdOn | date: "HH:mm"}}</td>
-                    <td><button class="btn btn-primary details"> Details </button> </td>
+                    <td *ngIf="offer.price == 0">N/A</td>
+                    <td *ngIf="offer.price > 0">{{offer.price}} PLN</td>
+                    <td><button class="btn btn-primary edit" data-bs-toggle="modal" data-bs-target="#editOfferModal" (click)="onEdit(offer)"> Edit </button> </td>
+                    <td><button class="btn btn-primary delete" (click)="deleteOffer(offer.offerId)"> Delete </button></td>
                 </tr>
                 </tbody>
                 </table>
         </div>
+
+
+        <div class="modal fade" id="editOfferModal" tabindex="-1" aria-labelledby="editOffer" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Update offer</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup] = "formValue">
+                            
+
+                            <div class="mb-3">
+                                <label for="offerDescription" class="form-label">Offer description</label>
+                                <input type="text" formControlName="offerDescription" placeholder="Enter the description" class="form-control" id="offerDescription">
+                            </div>
+        
+                            <div class="mb-3">
+                                <label for="offerTypeId" class="form-label">Offer type</label>
+                                    <select formControlName="offerTypeId" class="form-control" name="offerTypeId" id="offerTypeId">
+                                        <option type="text" value="" disabled selected>Select the offer type</option>   
+                                        <option type="text" *ngFor="let offerType of offerTypes" value="{{offerType.offerTypeId}}">{{offerType.name}}</option>
+                                    </select>
+                                   </div>
+
+                            <div *ngIf="!isExchange()" class="mb-3">
+                            <label for="offerPrice" class="form-label">Offer price</label>
+                            <input type="number" min="1.00" formControlName="offerPrice" placeholder="Enter the price (PLN)" class="form-control" id="InputPrice">
+                            </div>
+                                </form>
+        
+                        <div class="modal-footer">
+                            <button id="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" (click)="editOffer()" class="btn btn-primary">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                        

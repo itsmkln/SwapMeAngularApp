@@ -22,7 +22,6 @@ import { UsermanagerComponent } from './components/dashboard/admin-dashboard/use
 import { GamemanagerComponent } from './components/dashboard/admin-dashboard/gamemanager/gamemanager.component';
 import { OffersComponent } from './offers/offers.component';
 import { AddofferComponent } from './offers/addoffer/addoffer.component';
-import { TransactionsComponent } from './transactions/transactions.component';
 import { ArraySortPipe } from './login-register/helpers/alphabetical';
 import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatOptionSelectionChange } from '@angular/material/core';
@@ -35,6 +34,7 @@ import { MyProfileComponent } from './components/dashboard/my-profile/my-profile
 import { MyTransactionsComponent } from './components/dashboard/my-transactions/my-transactions.component';
 import { MyTransactionsDetailsComponent } from './components/dashboard/my-transactions/my-transactions-details/my-transactions-details.component';
 import { MatTableModule } from '@angular/material/table';
+import { MyOffersEndedDetailsComponent } from './components/dashboard/my-offers/my-offers-ended-details/my-offers-ended-details.component';
 
 
 @NgModule({
@@ -48,7 +48,6 @@ import { MatTableModule } from '@angular/material/table';
     GamemanagerComponent,
     OffersComponent,
     AddofferComponent,
-    TransactionsComponent,
     OffermanagerComponent,
     GenremanagerComponent,
     PlatformmanagerComponent,
@@ -56,6 +55,7 @@ import { MatTableModule } from '@angular/material/table';
     MyProfileComponent,
     MyTransactionsComponent,
     MyTransactionsDetailsComponent,
+    MyOffersEndedDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,12 +63,7 @@ import { MatTableModule } from '@angular/material/table';
     RouterModule.forRoot([
       { path: "welcome", component: WelcomeComponent},
       { path: "", redirectTo: "welcome", pathMatch: "full" },
-      { path: "**", redirectTo: "welcome", pathMatch: "full" },
-      // { path: "login", redirectTo: "login", pathMatch: "full" },
-      // { path: "register", redirectTo: "register", pathMatch: "full" },
-      // { path: "usermanager", redirectTo: "usermanager", pathMatch: "full"},
-      // { path: "gamemanager", redirectTo: "gamemanager", pathMatch: "full"},
-      // { path: "addoffer", redirectTo: "addoffer", pathMatch: "full"}
+      { path: "**", redirectTo: "welcome", pathMatch: "full" }
 
 
 

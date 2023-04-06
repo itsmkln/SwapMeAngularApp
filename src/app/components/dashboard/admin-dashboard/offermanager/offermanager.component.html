@@ -1,1 +1,81 @@
-<p>offermanager works!</p>
+<div class="table-responsive"> <h2 *ngIf="endedOffers.length">Ended Offers</h2>
+    <table class="table"
+            *ngIf="endedOffers.length">
+        <thead>
+            <tr>
+                <th>
+                </th>
+                <th>OfferId</th>
+                <th>GameName</th>
+                <th>PlatformName</th>
+                <th>OfferType</th>
+                <th>Seller Username</th>
+                <th>Buyer Username</th>
+                <th>CreatedOn</th>
+                <th>EndedOn</th>
+                <th>Price</th>
+
+            </tr>
+            
+        </thead>
+        <tbody>
+            
+            <tr *ngFor="let offer of endedOffers">
+                <td>
+                </td>
+                <td>{{offer.offerId}}</td>
+                <td>{{offer.gameName}}</td>
+                <td>{{offer.platformName}}</td>
+                <td>{{offer.offerTypeName}}</td>
+                <td>{{offer.sellerUsername}}</td>
+                <td>{{offer.buyerUsername}}</td>
+                <td>{{offer.createdOn | date: "dd-MM-yyyy"}}, {{offer.createdOn | date: "HH:mm"}}</td>
+                <td>{{offer.endedOn | date: "dd-MM-yyyy"}}, {{offer.endedOn | date: "HH:mm"}}</td>
+                <td *ngIf="offer.price == 0">N/A</td>
+                <td *ngIf="offer.price > 0">{{offer.price}} PLN</td>
+
+            </tr>
+            </tbody>
+            </table>
+    </div>
+
+
+
+    <div class="table-responsive"> <h2>Active Offers</h2>
+        <table class="table"
+                *ngIf="activeOffers.length">
+            <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>OfferId</th>
+                    <th>GameName</th>
+                    <th>PlatformName</th>
+                    <th>OfferType</th>
+                    <th>SellerName</th>
+                    <th>Status</th>
+                    <th>CreatedOn</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                
+                <tr *ngFor="let offer of activeOffers">
+                    <td>
+                    </td>
+                    <td>{{offer.offerId}}</td>
+                    <td>{{offer.gameName}}</td>
+                    <td>{{offer.platformName}}</td>
+                    <td>{{offer.offerTypeName}}</td>
+                    <td>{{offer.sellerUsername}}</td>
+                    <td>{{offer.status}}</td>
+                    <td>{{offer.createdOn | date: "dd-MM-yyyy"}}, {{offer.createdOn | date: "HH:mm"}}</td>
+                    <td *ngIf="offer.price == 0">N/A</td>
+                    <td *ngIf="offer.price > 0">{{offer.price}} PLN</td>
+                    <td><button class="btn btn-primary delete" (click)="deleteOffer(offer.offerId)"> Delete </button></td>
+                </tr>
+                </tbody>
+                </table>
+        </div>

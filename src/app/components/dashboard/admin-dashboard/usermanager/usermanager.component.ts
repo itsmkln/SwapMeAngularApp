@@ -16,7 +16,7 @@ import { UserDto } from './usermanager.model-dto';
 })
 export class UsermanagerComponent implements OnInit{
   formValue !: FormGroup;
-  public users : any = [];
+  users : any = [];
   role : string = "";
   // userObj : UserModel = new UserModel();
   userObj : UserDto = new UserDto();
@@ -43,6 +43,8 @@ export class UsermanagerComponent implements OnInit{
     })
     this.getUserDetails();
 
+
+
   }
 
   checkAdmin(){
@@ -59,7 +61,7 @@ export class UsermanagerComponent implements OnInit{
     }
 
   getUserDetails() {
-    this.api.getUsers()
+    this.api.GetUsers()
     .subscribe(res=>{
       this.users = res;
     })

@@ -28,5 +28,6 @@ export class OffersEndedModel {
     Status: string = "";
     CreatedOn: Date = date;
     EndedOn: Date = date;
+    Price: number = 0;
 
 }

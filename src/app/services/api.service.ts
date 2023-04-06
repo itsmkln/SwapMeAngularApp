@@ -6,8 +6,13 @@ import { AddGameModel } from '../components/dashboard/admin-dashboard/gamemanage
 import { GameManagerModel } from '../components/dashboard/admin-dashboard/gamemanager/gamemanager.model';
 import { AddGenreModel } from '../components/dashboard/admin-dashboard/genremanager/add-genre.model';
 import { AddPlatformModel } from '../components/dashboard/admin-dashboard/platformmanager/add-platform.model';
+import { UserModel } from '../components/dashboard/admin-dashboard/usermanager/usermanager.model';
+import { UserDto } from '../components/dashboard/admin-dashboard/usermanager/usermanager.model-dto';
 import { OffersActiveModel } from '../components/dashboard/my-offers/my-offers-active.model';
 import { OffersEndedModel } from '../components/dashboard/my-offers/my-offers-ended.model';
+import { OfferUpdateModel } from '../components/dashboard/my-offers/my-offers-update.model';
+import { MyProfileInterface } from '../components/dashboard/my-profile/my-profile.interface';
+import { MyProfileModel } from '../components/dashboard/my-profile/my-profile.model';
 import { OffersModel } from '../games/offers.model';
 import { StatusUpdateModel } from '../games/status-update.model';
 import { OfferDto } from '../offers/addoffer/addoffer.model';
@@ -30,12 +35,12 @@ export class ApiService {
   
   //Users 
 
-  getUsers() {
+  GetUsers() {
     return this.http.get<any>(this.userUrl + "getallusersinfo");
   }
 
-  getUserById() {
-    return this.http.get<any>(this.userUrl + "")
+  GetUserDetails(userId : number) {
+    return this.http.get<MyProfileInterface>(this.userUrl +"getUserDetails/"+userId);
   }
 
   DeleteUserById(userId : any) {
@@ -44,6 +49,10 @@ export class ApiService {
 
   UpdateUser(userObj: any) {
     return this.http.post<any>(`${this.userUrl}update`, userObj)
+  }
+
+  UpdateUserProfile(userObj: MyProfileModel) {
+    return this.http.post<MyProfileModel>(`${this.userUrl}updateProfile`, userObj)
   }
 
   //Games
@@ -116,6 +125,18 @@ export class ApiService {
 
   DeleteOfferById(offerId: number) {
     return this.http.delete(`${this.offerUrl}deleteOfferById/`+ offerId)
+  }
+
+  GetAllActiveOffers() {
+    return this.http.get<OffersActiveModel>(`${this.offerUrl}getAllActiveOffers`)
+  }
+
+  GetAllEndedOffers() {
+    return this.http.get<OffersEndedModel>(`${this.offerUrl}getAllEndedOffers`)
+  }
+
+  UpdateOffer(offerObj: OfferUpdateModel) {
+    return this.http.post<OfferUpdateModel>(`${this.offerUrl}updateOffer`, offerObj)
   }
 
   //Transactions

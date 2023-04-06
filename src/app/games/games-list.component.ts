@@ -87,10 +87,10 @@ export class GamesListComponent implements OnInit, OnDestroy {
 
     onClick(offerId: any) {
         this.shared.offerObj = JSON.stringify(this.games); 
-        this.router.navigate(["/offers/"+offerId,
+        this.router.navigate(["/offers/"+offerId])
 
         //{ offersObj: JSON.stringify(this.games)}, caused problems with URL
-        ])
+        
     }
 
     

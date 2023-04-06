@@ -1,6 +1,5 @@
 export class OffersActiveModel {
 
-    TransactionId: number = 0;
     SellerId: number = 0;
     SellerUsername: string = "";
     SellerFirstName: string = "";
@@ -12,8 +11,10 @@ export class OffersActiveModel {
     OfferId: number = 0;
     GameName: string = "";
     PlatformName: string = "";
+    OfferTypeId: number = 0;
     OfferTypeName: string = "";
     OfferDescription: string = "";
     CreatedOn: string = "";
+    Price: number = 0;
 
 }

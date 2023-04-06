@@ -81,11 +81,10 @@
                     <thead>
                         <tr>
                             <th>
-                                <button (click)="disableImage()" class="btn btn-primary">
+                                <!-- <button (click)="disableImage()" class="btn btn-primary">
                                     {{hideImage ? "Show" : "Hide"}} Image
-                                </button>
+                                </button> -->
                             </th>
-                            <th>OfferId</th>
                             <th>GameName</th>
                             <th>Platform</th>
                             <th>Distribution</th>
@@ -114,7 +113,6 @@
                                  [style.margin.px]="imageMargin">
                             </td> -->
                             <td></td>
-                            <td>{{offer.offerId}}</td>
                             <td>{{offer.gameName}} </td>
                             <td>{{offer.platformName}}</td>
                             <td *ngIf="offer.isPhysical">Box</td>

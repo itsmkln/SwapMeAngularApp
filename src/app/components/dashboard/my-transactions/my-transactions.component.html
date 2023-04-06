@@ -1,4 +1,4 @@
-<p>my-transactions works!</p>
+<h1>My transactions</h1>
 
 
 
@@ -10,7 +10,6 @@
             <tr>
                 <th>
                 </th>
-                <th>OfferId</th>
                 <th>GameName</th>
                 <th>PlatformName</th>
                 <th>OfferType</th>
@@ -27,7 +26,6 @@
             <tr *ngFor="let transaction of transactions">
                 <td>
                 </td>
-                <td>{{transaction.offerId}}</td>
                 <td>{{transaction.gameName}}</td>
                 <td>{{transaction.platformName}}</td>
                 <td>{{transaction.offerTypeName}}</td>
@@ -35,7 +33,7 @@
                 <td>{{transaction.status}}</td>
                 <td>{{transaction.createdOn | date: "dd-MM-yyyy"}}, {{transaction.createdOn | date: "HH:mm"}}</td>
                 <td>{{transaction.endedOn | date: "dd-MM-yyyy"}}, {{transaction.endedOn | date: "HH:mm"}}</td>
-                <td><button class="btn btn-primary details"> Details </button> </td>
+                <td><button (click)="viewDetails(transaction.offerId)" class="btn btn-primary details"> Details </button> </td>
 
             </tr>
             </tbody>

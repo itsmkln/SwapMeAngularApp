@@ -22,6 +22,9 @@ import { PlatformmanagerComponent } from '../components/dashboard/admin-dashboar
 import { MyOffersComponent } from '../components/dashboard/my-offers/my-offers.component';
 import { MyTransactionsComponent } from '../components/dashboard/my-transactions/my-transactions.component';
 import { MyProfileComponent } from '../components/dashboard/my-profile/my-profile.component';
+import { MyOffersGuard } from '../components/dashboard/my-offers/my-offers.guard';
+import { MyOffersEndedDetailsComponent } from '../components/dashboard/my-offers/my-offers-ended-details/my-offers-ended-details.component';
+import { MyTransactionsDetailsComponent } from '../components/dashboard/my-transactions/my-transactions-details/my-transactions-details.component';
 
 
 @NgModule({
@@ -35,6 +38,8 @@ import { MyProfileComponent } from '../components/dashboard/my-profile/my-profil
       { path: "register", component: RegisterComponent},
       { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard]},
       { path: "myoffers", component: MyOffersComponent, canActivate: [AuthGuard]},
+      { path: "myoffers/:id", canActivate: [MyOffersGuard], component: MyOffersEndedDetailsComponent},
+      { path: "mytransactions/:id", canActivate: [MyOffersGuard], component: MyTransactionsDetailsComponent},
       { path: "mytransactions", component: MyTransactionsComponent, canActivate: [AuthGuard]},
       { path: "myprofile", component: MyProfileComponent, canActivate: [AuthGuard]},
       { path: "usermanager", component: UsermanagerComponent},

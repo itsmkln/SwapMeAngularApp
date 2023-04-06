@@ -39,15 +39,16 @@
                             <td>{{user.userInfo.state}}</td>
                             <td>{{user.userInfo.city}}</td>
                         
-                            <td><button class="btn btn-primary edit" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onEdit(user)"> Edit </button> </td>
+                            <td><button class="btn btn-primary edit" data-bs-toggle="modal" data-bs-target="#usermanagerModal" (click)="onEdit(user)"> Edit </button> </td>
                             <td><button class="btn btn-primary delete" (click)="deleteUser(user)"> Delete </button></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="usermanagerModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

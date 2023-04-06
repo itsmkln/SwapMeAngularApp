@@ -59,9 +59,6 @@ export class GameDetailsComponent implements OnInit {
     const offersGet = this.offersJSON = JSON.parse((this.shared.offerObj) || "{}");
     this.offers = offersGet.filter((o: { offerId: number; }) => o.offerId == id);
     console.log(this.offers);
-
-    this.pageTitle += `: id ${offerId}`;
-    this.gameName = `${gameName}`;
     }
 
 
@@ -73,11 +70,10 @@ export class GameDetailsComponent implements OnInit {
     }
 
     onBuy(offerId: number) {
-      confirm("U sure?");
+      confirm("Are you sure?");
 
       this.acceptOffer();
 
-      this.router.navigate(["/transactions"])
     }
 
     acceptOffer() {
@@ -103,19 +99,15 @@ export class GameDetailsComponent implements OnInit {
         this.api.UpdateStatus(this.statusObj)
         .subscribe(res => {
         console.log(this.statusObj);
-        alert("ŁADZIA")
         //gettransactiondetails?
         this.toast.success({detail: "SUCCESS", summary: "Offer has been accepted."})
-        this.router.navigate(["transactions"])
+        this.router.navigate(["mytransactions"])
       })
     })
 
 
     
 
-    }
-
-    setStatusEnded(){
     }
 
   }

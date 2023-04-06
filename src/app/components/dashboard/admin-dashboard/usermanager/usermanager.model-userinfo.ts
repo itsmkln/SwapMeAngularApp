@@ -1,8 +1,8 @@
 export class UserInfo{
-    UserInfoId : number = 0;
-    FirstName : string = "";
-    LastName : string = "";
-    PhoneNumber : string = "";
-    State : string = "";
-    City : string = "";
+    userInfoId : number = 0;
+    firstName : string = "";
+    lastName : string = "";
+    phoneNumber : string = "";
+    state : string = "";
+    city : string = "";
 }
