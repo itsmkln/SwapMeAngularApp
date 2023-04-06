@@ -26,7 +26,6 @@ export class GameDetailsComponent implements OnInit {
   offersJSON: OffersModel | undefined;
  
   offers: any = [];
-  
   test: any = [];
 
 
@@ -58,7 +57,6 @@ export class GameDetailsComponent implements OnInit {
     //const offersGet = this.offersJSON = JSON.parse(this.route.snapshot.paramMap.get("offersObj") || "{}");
     const offersGet = this.offersJSON = JSON.parse((this.shared.offerObj) || "{}");
     this.offers = offersGet.filter((o: { offerId: number; }) => o.offerId == id);
-    console.log(this.offers);
     }
 
 
@@ -88,18 +86,12 @@ export class GameDetailsComponent implements OnInit {
       this.statusObj.OfferId = this.currentOffer;
       this.statusObj.Status = "Ended";
 
-      console.log(this.statusObj.OfferId + " : " + this.statusObj.Status)
-      //this.transactionObj.Status = "In progress";
-
-      console.log(this.transactionObj);
 
 
       this.api.AcceptOffer(this.transactionObj)
       .subscribe(res => {
         this.api.UpdateStatus(this.statusObj)
         .subscribe(res => {
-        console.log(this.statusObj);
-        //gettransactiondetails?
         this.toast.success({detail: "SUCCESS", summary: "Offer has been accepted."})
         this.router.navigate(["mytransactions"])
       })

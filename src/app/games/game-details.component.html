@@ -13,8 +13,7 @@
                 *ngFor="let offer of offers">
             <thead>
                 <tr>
-                    <th>GameName</th>
-                    <th>OfferId</th>
+                    <th>Game name</th>
                     <th>Platform</th>
                     <th>Distribution</th>
                     <th>Offer type</th>
@@ -31,7 +30,6 @@
                 
                 <tr *ngFor="let offer of offers">
                     <td>{{offer.gameName}} </td>
-                    <td>{{offer.offerId}}</td>
                     <td>{{offer.platformName}}</td>
                     <td *ngIf="offer.isPhysical">Box</td>
                     <td *ngIf="!offer.isPhysical">Digital</td>

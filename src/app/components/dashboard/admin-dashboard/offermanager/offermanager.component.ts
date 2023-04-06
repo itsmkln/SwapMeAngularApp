@@ -42,7 +42,6 @@ export class OffermanagerComponent {
         this.api.GetAllActiveOffers()
         .subscribe(res=>{
           this.activeOffers = res;
-          console.log(this.activeOffers)
         })
       }
 
@@ -65,12 +64,6 @@ export class OffermanagerComponent {
         this.offerObj.OfferTypeId = this.formValue.value.offerTypeId;
         this.offerObj.OfferDescription = this.formValue.value.offerDescription;
         this.offerObj.Price = this.formValue.value.offerPrice;
-
-        console.log(this.formValue.value.offerTypeName)
-        console.log(this.formValue.value.offerTypeId)
-        console.log(this.offerObj.OfferTypeId)
-
-
       }
 
       onEdit(offer: any) {
